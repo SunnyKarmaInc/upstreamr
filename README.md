@@ -72,6 +72,61 @@ All your work commits should be under **develop** branch. (exceptions for hot-fi
 
 > Front-End <> Back-End
 
+#### JSON Hash ####
+
+* Most unlikely
+* Unlikely
+* Likely
+* Most likely
+
+JSON Hash:
+```
+{
+  start: 'embr',
+  destination: 'rock',
+  options: {
+    fastest: {
+      transfer: '',
+      currentDeparture: '17:48',
+      upsteamColor: '',
+      upsteamDestination: '',
+      downstreamColor: 'yellow',
+      downstreamDestination: 'ptsb',
+      transferArrival: '',
+      transferDeparture: '',
+      chanceOfStand: 'Most likely',
+      chanceOfSeat: 'Likely'
+    },
+
+    optimal: {
+      transfer: 'civic',
+      currentDeparture: '17:26',
+      upsteamColor: 'red',
+      upsteamDestination: 'mlbr',
+      transferArrival: '17:30',
+      transferDeparture: '17:42',
+      downstreamColor: 'yellow',
+      downstreamDestination: 'ptsb',
+      chanceOfStand: 'Most likely',
+      chanceOfSeat: 'Likely'
+    },
+
+    guaranteedSeat: {
+      transfer: 'UN Plaza',
+      currentDeparture: '17:30',
+      upsteamColor: 'red',
+      upsteamDestination: 'mlbr',
+      transferArrival: '17:35',
+      transferDeparture: '17:52',
+      downstreamColor: 'yellow',
+      downstreamDestination: 'ptsb',
+      chanceOfStand: 'Most likely',
+      chanceOfSeat: 'Likely'
+    }
+  }
+}
+```
+
 #### UML Diagram ####
 
 > UML Diagram
