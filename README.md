@@ -1,7 +1,9 @@
 # Upstreamr
 
 There should be brief project description. (2-3 sentences)
+
 ### Useful links
+
 [Trello board]
 BART API - ?
 
@@ -49,3 +51,16 @@ All your work commits should be under **develop** branch. (exceptions for hot-fi
 [Dallas]: <https://github.com/dallaswmorgan>
 [Dan]: <https://github.com/dankim93>
 [Maria]: <https://github.com/mbelgrader>
+
+
+### Detailed Project description
+
+### Mockups ###
+
+### App Architecture ###
+
+#### Front-End <> Back-End ####
+
+#### UML Diagram ####
+
+#### React Components ####
