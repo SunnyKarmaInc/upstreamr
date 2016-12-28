@@ -49,14 +49,17 @@ input[type="email"],
 input[type="text"],
 input[type="submit"],
 textarea,
-button {
+button, button:focus {
   /*
   Get rid of native styling. Read more here:
   http://css-tricks.com/almanac/properties/a/appearance/
   */
+  padding: 0px;
+  border: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  outline: none;
 }
 
 /* Clearfix */
