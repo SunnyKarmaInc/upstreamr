@@ -23,7 +23,7 @@ class Station < ActiveRecord::Base
   end
 
   def travel_time_from(station)
-    station.total_travel_time_to(self) 
+    station.total_travel_time_to(self)
   end
 
 end
