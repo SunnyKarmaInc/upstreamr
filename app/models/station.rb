@@ -1,8 +1,8 @@
 class Station < ActiveRecord::Base
   validates name, abbr, presence: true, uniqueness: true
 
-  def fastest_travel_time(destination)
-    #amount of time it takes from door shut to door open
+  def fastest_travel_time_to(destination)
+    #get info from table unless can get from BART API
   end
 
   def current_time
@@ -13,7 +13,7 @@ class Station < ActiveRecord::Base
     next_arrival_time(destination) - current_time
   end
 
-  def total_travel_time(destination)
+  def total_travel_time_to(destination)
     wait_time(destination) + fastest_travel_time(destination)
   end
 
@@ -22,5 +22,8 @@ class Station < ActiveRecord::Base
     #Bart API to determine when next train of that line will arrive
   end
 
+  def travel_time_from(station)
+    station.total_travel_time_to(self) 
+  end
 
 end
