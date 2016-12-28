@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Navbar from './components/navbar';
+import ChooseDirectionsForm from './components/chooseDirections';
+
 
 class Upstreamr extends React.Component {
   constructor() {
@@ -8,9 +11,11 @@ class Upstreamr extends React.Component {
 
   render() {
     return (
-      <div className="main">
-        <h1>Hello Upstreamr</h1>
+      <div>
+        <Navbar />
+        <ChooseDirectionsForm />
       </div>
+
     );
   }
 }
