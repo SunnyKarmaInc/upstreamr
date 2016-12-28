@@ -1,5 +1,5 @@
 class Station < ActiveRecord::Base
-  validates name, abbr, presence: true, uniqueness: true
+  validates :name, :abbr, presence: true, uniqueness: true
 
   def fastest_travel_time_to(destination)
     #get info from table unless can get from BART API
