@@ -16,16 +16,17 @@ class DirectRoute extends React.Component {
 
     return (
       <div className='results-box'>
-        <div>
+        <div className='start-end-labels'>
           <p className='start'>{this.props.start}</p>
           <p className='dest'>{this.props.dest}</p>
         </div>
-        <div>
+        <div className='time-display'>
           <p className='time-label'>Travel downstream for</p>
           <p>
             <span className='time-num'>{downTimeNum}</span>
             <span className='time-type'>{downTimeType}</span>
           </p>
+          <div className='person-icon'></div>
           <p className='time-label'>DestinationETA</p>
           <p>
             <span className='time-num'>{etaNum}</span>

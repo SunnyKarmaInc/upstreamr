@@ -2,11 +2,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 20px;
 }
 
 .results-box {
   width: 340px;
 	height: 189px;
+  margin-top: 20px;
 	background-color: #ffffff;
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
   display: flex;
@@ -15,18 +17,23 @@
 
 .start {
 	font-size: 18px;
-  padding: 15px;
+  padding: 15px 0 78px 25px;
 }
 
 .dest {
 	font-size: 14px;
 	color: $light-grey;
+  padding: 15px 0 25px 65px;
 }
 
 .unlikely {
 	font-size: 18px;
 	font-weight: 300;
 	color: #d0021b;
+}
+
+.time-display {
+  padding: 15px 20px;
 }
 
 .time-label {
@@ -43,4 +50,12 @@
 	font-size: 18px;
 	font-weight: 300;
 	color: $light-grey;
+}
+
+.person-icon {
+  background: image-url('standing_person.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 20px;
+  margin-bottom: 10px;
 }
