@@ -56,4 +56,5 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   resources :bart_travel_times
+  resources :stations
 end
