@@ -67,10 +67,6 @@ class ChooseDirectionsForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  submitInputs() {
-    // ajax post request to server
-  }
-
   handleStartChange(station, event) {
     event.preventDefault();
     this.setState({ start: station });
@@ -82,7 +78,10 @@ class ChooseDirectionsForm extends React.Component {
   }
 
   handleSubmit(event) {
-
+    event.preventDefault();
+    console.log(this.state);
+    // ajax post request to server with inputs
+    // go to options page on success
   }
 
   render() {
@@ -101,7 +100,7 @@ class ChooseDirectionsForm extends React.Component {
     ));
 
     let selectValue, selectClass;
-    console.log(this.state.destination);
+
     if (this.state.destination === "") {
         selectValue = "Select Station";
         selectClass = "empty";
@@ -123,7 +122,10 @@ class ChooseDirectionsForm extends React.Component {
           </select>
         </div>
         <span>Do your magic and</span>
-        <button onClick={this.handleSubmit}>Show me the options</button>
+        <button className="submit"
+                onClick={this.handleSubmit}>
+          Show me the options
+        </button>
       </form>
     );
   }

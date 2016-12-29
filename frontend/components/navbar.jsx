@@ -9,8 +9,8 @@ class Navbar extends React.Component {
   render() {
     return (
       <nav>
+        <div className="area">BART</div>
         <div className="logo"></div>
-        <div className="area">BART area</div>
         <div className="settings-icon-back">
           <i className="settings-icon fa fa-cog" aria-hidden="true"></i>
         </div>

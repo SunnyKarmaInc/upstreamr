@@ -25,6 +25,7 @@ nav .logo:hover {
 }
 
 nav .area {
+  width: 100px;
   text-align: center;
   color: #fff;
   font-size: 20px;
@@ -43,7 +44,7 @@ nav .settings-icon {
   width: 40px;
   height: 40px;
   color: $gray;
-  opacity: 0.8;
+  opacity: 0.9;
   display: flex;
   justify-content: center;
   align-items: center;

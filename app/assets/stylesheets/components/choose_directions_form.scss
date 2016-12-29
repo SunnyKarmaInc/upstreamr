@@ -70,4 +70,21 @@
     font-weight: 300;
     color: $dark-gray;
   }
+
+  button.submit {
+    color: #fff;
+    height: 60px;
+    font-size: 18px;
+    background-color: $light-blue;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    opacity: 0.8;
+  }
+
+  button.submit:active {
+    box-shadow: none;
+  }
+
+  button.submit:hover {
+    opacity: 1;
+  }
 }
