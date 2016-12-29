@@ -14,61 +14,33 @@
 }
 
 .start {
-	font-family: Roboto;
 	font-size: 18px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	text-align: left;
-	color: #4a4a4a;
+  padding: 15px;
 }
 
 .dest {
-	font-family: Roboto;
 	font-size: 14px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	text-align: left;
-	color: #9b9b9b;
+	color: $light-grey;
 }
 
 .unlikely {
-	font-family: Roboto;
 	font-size: 18px;
 	font-weight: 300;
-	font-style: normal;
-	font-stretch: normal;
-	text-align: left;
 	color: #d0021b;
 }
 
 .time-label {
-	font-family: Roboto;
 	font-size: 9px;
-	font-weight: normal;
-	font-style: normal;
-	font-stretch: normal;
-	text-align: left;
-	color: #9b9b9b;
+	color: $light-grey;
 }
 
 .time-num {
-	font-family: Roboto;
 	font-size: 36px;
 	font-weight: 300;
-	font-style: normal;
-	font-stretch: normal;
-	text-align: left;
-	color: #4a4a4a;
 }
 
 .time-type {
-	font-family: Roboto;
 	font-size: 18px;
 	font-weight: 300;
-	font-style: normal;
-	font-stretch: normal;
-	text-align: left;
-	color: #4a4a4a;
+	color: $light-grey;
 }
