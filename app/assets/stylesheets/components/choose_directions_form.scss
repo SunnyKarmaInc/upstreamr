@@ -5,6 +5,7 @@
 
   h3 {
     margin-top: 20px;
+    margin-bottom: 10px;
     font-size: 24px;
     font-weight: 300;
     color: $dark-gray;
@@ -18,6 +19,7 @@
     height: 40px;
     border-radius: 5px;
     background-color: #fff;
+    transition: all 0.2s ease;
   }
 
   button:hover {
@@ -35,13 +37,13 @@
     background-color: $green;
   }
 
-  div {
-    // background: url('http://i62.tinypic.com/15xvbd5.png') no-repeat 96% 0;
-    height: 40px;
-    overflow: hidden;
-    width: 306px;
-    border-radius: 5px;
-  }
+  // div {
+  //   // background: url('http://i62.tinypic.com/15xvbd5.png') no-repeat 96% 0;
+  //   height: 40px;
+  //   overflow: hidden;
+  //   width: 306px;
+  //   border-radius: 5px;
+  // }
 
   select {
     font-weight: 300;
@@ -55,8 +57,16 @@
     color: $dark-gray;
   }
 
+  select:hover {
+    cursor: pointer;
+  }
+
   select.empty {
-    opacity: 0.5;
+    opacity: 0.8;
+  }
+
+  select.empty:hover {
+    opacity: 0.9;
   }
 
   select.selected {
