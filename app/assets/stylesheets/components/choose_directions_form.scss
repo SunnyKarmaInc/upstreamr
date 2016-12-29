@@ -2,36 +2,72 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
 
-.choose-directions-form h3 {
-  margin-top: 20px;
-  font-size: 24px;
-  font-weight: 300;
-  color: $dark-gray;
-}
+  h3 {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: 300;
+    color: $dark-gray;
+  }
 
-.choose-directions-form button {
-  font-size: 16px;
-  font-weight: 300;
-  margin: 5px 0;
-  width: 306px;
-  height: 40px;
-  border-radius: 5px;
-  background-color: #fff;
-}
+  button {
+    font-size: 16px;
+    font-weight: 300;
+    margin: 5px 0;
+    width: 306px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #fff;
+  }
 
-.choose-directions-form button:hover {
-  cursor: pointer;
-  background-color: $green;
-  opacity: 0.5;
-}
+  button:hover {
+    cursor: pointer;
+    background-color: $green;
+    opacity: 0.5;
+  }
 
-.choose-directions-form button.selected:hover {
-  opacity: 1;
-}
+  button.selected:hover {
+    opacity: 1;
+  }
 
-.choose-directions-form button.selected {
-  color: #fff;
-  background-color: $green;
+  button.selected {
+    color: #fff;
+    background-color: $green;
+  }
+
+  div {
+    // background: url('http://i62.tinypic.com/15xvbd5.png') no-repeat 96% 0;
+    height: 40px;
+    overflow: hidden;
+    width: 306px;
+    border-radius: 5px;
+  }
+
+  select {
+    font-weight: 300;
+    background: #fff;
+    text-align-last: center;
+    width: 306px;
+    height: 40px;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+    color: $dark-gray;
+  }
+
+  select.empty {
+    opacity: 0.5;
+  }
+
+  select.selected {
+    background-color: $green;
+    color: #fff;
+  }
+
+  span {
+    margin-top: 50px;
+    font-size: 18px;
+    font-weight: 300;
+    color: $dark-gray;
+  }
 }

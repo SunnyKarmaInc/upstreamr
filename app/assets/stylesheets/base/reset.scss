@@ -49,7 +49,7 @@ input[type="email"],
 input[type="text"],
 input[type="submit"],
 textarea,
-button, button:focus {
+button, button:focus, select:focus, select {
   /*
   Get rid of native styling. Read more here:
   http://css-tricks.com/almanac/properties/a/appearance/
