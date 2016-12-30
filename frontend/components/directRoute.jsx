@@ -6,13 +6,25 @@ class DirectRoute extends React.Component {
   }
 
   render() {
-    const downTime = this.props.downstream.split(' ');
-    const downTimeNum = downTime[0];
-    const downTimeType = downTime[1];
+    let parsedEta;
+    let timeType;
+    const fastest = this.props.options.fastest;
+    const final = fastest.finalEta.split(':');
+    const finalHours = parseInt(final[0]);
+    const finalInMin = (parseInt(final[0]) * 60) + parseInt(final[1]);
 
-    const eta = this.props.eta.split(' ');
-    const etaNum = eta[0];
-    const etaType = eta[1];
+    const start = fastest.currentDeparture.split(':');
+    const startInMin = (parseInt(start[0]) * 60) + parseInt(start[1]);
+
+    const totalTime = finalInMin - startInMin;
+
+    if (finalHours > 12) {
+      parsedEta = `${finalHours - 12}:${final[1]}`;
+      timeType = 'pm';
+    } else {
+      parsedEta = `${finalHours}:${final[1]}`;
+      timeType = 'am';
+    }
 
     return (
       <div className='results-box'>
@@ -23,14 +35,14 @@ class DirectRoute extends React.Component {
         <div className='time-display'>
           <p className='time-label'>Travel downstream for</p>
           <p>
-            <span className='time-num'>{downTimeNum}</span>
-            <span className='time-type'>{downTimeType}</span>
+            <span className='time-num'>{totalTime}</span>
+            <span className='time-type'>min</span>
           </p>
           <div className='person-icon'></div>
           <p className='time-label'>DestinationETA</p>
           <p>
-            <span className='time-num'>{etaNum}</span>
-            <span className='time-type'>{etaType}</span>
+            <span className='time-num'>{parsedEta}</span>
+            <span className='time-type'>{timeType}</span>
           </p>
         </div>
       </div>
