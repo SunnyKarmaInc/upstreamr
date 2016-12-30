@@ -1,0 +1,100 @@
+.choose-directions-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: 300;
+    color: $dark-gray;
+  }
+
+  button {
+    font-size: 16px;
+    font-weight: 300;
+    margin: 5px 0;
+    width: 306px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: all 0.2s ease;
+  }
+
+  button:hover {
+    cursor: pointer;
+    background-color: $green;
+    opacity: 0.5;
+  }
+
+  button.selected:hover {
+    opacity: 1;
+  }
+
+  button.selected {
+    color: #fff;
+    background-color: $green;
+  }
+
+  // div {
+  //   // background: url('http://i62.tinypic.com/15xvbd5.png') no-repeat 96% 0;
+  //   height: 40px;
+  //   overflow: hidden;
+  //   width: 306px;
+  //   border-radius: 5px;
+  // }
+
+  select {
+    font-weight: 300;
+    background: #fff;
+    text-align-last: center;
+    width: 306px;
+    height: 40px;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 16px;
+    color: $dark-gray;
+  }
+
+  select:hover {
+    cursor: pointer;
+  }
+
+  select.empty {
+    opacity: 0.8;
+  }
+
+  select.empty:hover {
+    opacity: 0.9;
+  }
+
+  select.selected {
+    background-color: $green;
+    color: #fff;
+  }
+
+  span {
+    margin-top: 50px;
+    font-size: 18px;
+    font-weight: 300;
+    color: $dark-gray;
+  }
+
+  button.submit {
+    color: #fff;
+    height: 60px;
+    font-size: 18px;
+    background-color: $light-blue;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    opacity: 0.8;
+  }
+
+  button.submit:active {
+    box-shadow: none;
+  }
+
+  button.submit:hover {
+    opacity: 1;
+  }
+}
