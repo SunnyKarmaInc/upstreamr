@@ -83,7 +83,7 @@
 .direct-route-schema {
   width: 100px;
   position: relative;
-  background-color: $light-grey;
+  // background-color: $light-grey;
 }
 
 .sitting-person-icon {
@@ -95,6 +95,45 @@
   margin-bottom: 10px;
 }
 
+.start-station-icon {
+  position: absolute;
+  top: 20px;
+  left: 5px;
+  width: 20px;
+  height: 20px;
+  background-color: #ffdc02;
+  border-radius: 10px;
+}
+
+.dest-station-icon {
+  position: absolute;
+  bottom: 27px;
+  left: 5px;
+  width: 20px;
+  height: 20px;
+  background-color: #ffdc02;
+  border-radius: 10px;
+}
+
+.long-line {
+  position: absolute;
+  top: 50px;
+  left: 13px;
+  width: 4px;
+  height: 80px;
+  background-color: #ffdc02;
+}
+
+.arrow-dest-bottom {
+  position: absolute;
+  top: 130px;
+  left: 9px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #ffdc02;
+}
 
 /* upstream */
 
