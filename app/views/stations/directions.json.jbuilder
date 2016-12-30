@@ -1,5 +1,5 @@
 json.start @start
-json.end @end
+json.destination @dest
 
 json.options do
   json.fastest @fastest

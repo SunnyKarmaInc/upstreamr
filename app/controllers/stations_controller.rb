@@ -4,7 +4,7 @@ class StationsController < ApplicationController
 
   def directions
     @start = params[:start]
-    @end = params[:end]
+    @dest = params[:end]
 
     # Should be something like
     # Station.find_fastest(start: @start, end: @end)
