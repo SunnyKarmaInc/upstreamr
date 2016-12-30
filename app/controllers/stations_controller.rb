@@ -3,50 +3,59 @@ class StationsController < ApplicationController
   end
 
   def directions
-    render json: {
-                  start: 'embr',
-                  end: 'rock',
-                  options: {
-                    fastest: {
-                      transfer: '',
-                      currentDeparture: '17:48',
-                      upsteamColor: '',
-                      upsteamDestination: '',
-                      downstreamColor: 'yellow',
-                      downstreamDestination: 'ptsb',
-                      transferArrival: '',
-                      transferDeparture: '',
-                      chanceOfStand: 'Most likely',
-                      chanceOfSeat: 'Likely'
-                    },
+    @start = params[:start]
+    @end = params[:end]
 
-                    optimal: {
-                      transfer: 'civic',
-                      currentDeparture: '17:26',
-                      upsteamColor: 'red',
-                      upsteamDestination: 'mlbr',
-                      transferArrival: '17:30',
-                      transferDeparture: '17:42',
-                      downstreamColor: 'yellow',
-                      downstreamDestination: 'ptsb',
-                      chanceOfStand: 'Most likely',
-                      chanceOfSeat: 'Likely'
-                    },
+    # Should be something like
+    # Station.find_fastest(start: @start, end: @end)
+    # And it should return Hash
+    @fastest = {
+      transfer: '',
+      currentDeparture: '17:48',
+      upsteamColor: '',
+      upsteamDestination: '',
+      downstreamColor: 'yellow',
+      downstreamDestination: 'ptsb',
+      transferArrival: '',
+      transferDeparture: '',
+      chanceOfStand: 'Most likely',
+      chanceOfSeat: 'Likely'
+    }
 
-                    guaranteedSeat: {
-                      transfer: 'UN Plaza',
-                      currentDeparture: '17:30',
-                      upsteamColor: 'red',
-                      upsteamDestination: 'mlbr',
-                      transferArrival: '17:35',
-                      transferDeparture: '17:52',
-                      downstreamColor: 'yellow',
-                      downstreamDestination: 'ptsb',
-                      chanceOfStand: 'Most likely',
-                      chanceOfSeat: 'Likely'
-                      }
-                    }
-                  }
+    # Should be something like
+    # Station.find_optimal(start: @start, end: @end)
+    # And it should return Hash
+    @optimal = {
+      transfer: 'civic',
+      currentDeparture: '17:26',
+      upsteamColor: 'red',
+      upsteamDestination: 'mlbr',
+      transferArrival: '17:30',
+      transferDeparture: '17:42',
+      downstreamColor: 'yellow',
+      downstreamDestination: 'ptsb',
+      chanceOfStand: 'Most likely',
+      chanceOfSeat: 'Likely'
+    }
+
+    # Should be soething like
+    # If Optimal chanceOfSeat is bad then
+    # Station.find_guaranteed_seat(start: @start, end: @end)
+    # And it should return Hash
+    @guaranteed_seat = {
+      transfer: 'UN Plaza',
+      currentDeparture: '17:30',
+      upsteamColor: 'red',
+      upsteamDestination: 'mlbr',
+      transferArrival: '17:35',
+      transferDeparture: '17:52',
+      downstreamColor: 'yellow',
+      downstreamDestination: 'ptsb',
+      chanceOfStand: 'Most likely',
+      chanceOfSeat: 'Likely'
+    }
+
+    render :directions
   end
 
   def show
