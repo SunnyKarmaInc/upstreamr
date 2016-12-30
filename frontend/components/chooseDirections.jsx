@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class ChooseDirectionsForm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       start: "Embracadero",
@@ -82,6 +82,40 @@ class ChooseDirectionsForm extends React.Component {
     console.log(this.state);
     // ajax post request to server with inputs
     // go to options page on success
+    this.loadResults();
+  }
+
+  loadResults() {
+    const start = this.state.start;
+    const end = this.state.destination;
+    const request = new XMLHttpRequest();
+    const baseUrl = `${window.location.href}directions`;
+    const url = `${baseUrl}?start=${start}&end=${end}`;
+
+    console.log(url);
+
+    request.open('GET', url, true);
+
+    request.onload = () => {
+      if (request.status >= 200 && request.status < 400) {
+        // Success!
+        const resp = JSON.parse(request.responseText);
+        console.log(resp);
+        this.props.displayResults(resp);
+      } else {
+        // We reached our target server, but it returned an error
+        console.log(request.status);
+      }
+    };
+
+    request.onerror = function() {
+      // There was a connection error of some sort
+      console.log(request);
+      console.log("Connection error, trying again..");
+      // this.loadWeatherData({ lat, lon });
+    };
+
+    request.send();
   }
 
   render() {
