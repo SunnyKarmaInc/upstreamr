@@ -92,15 +92,12 @@ class ChooseDirectionsForm extends React.Component {
     const baseUrl = `${window.location.href}directions`;
     const url = `${baseUrl}?start=${start}&end=${end}`;
 
-    console.log(url);
-
     request.open('GET', url, true);
 
     request.onload = () => {
       if (request.status >= 200 && request.status < 400) {
         // Success!
         const resp = JSON.parse(request.responseText);
-        console.log(resp);
         this.props.displayResults(resp);
       } else {
         // We reached our target server, but it returned an error
