@@ -63,6 +63,7 @@ class Results extends React.Component {
         <p className='unlikely'>Most unlikely get a seat</p>
         <DirectRoute start={this.state.start} dest={this.state.destination}
                      route={this.state.options.fastest} />
+        <p className='likely'>Most likely get a seat</p>
         <Upstream start={this.state.start} dest={this.state.destination}
                      route={this.state.options.guaranteedSeat} />
       </div>
