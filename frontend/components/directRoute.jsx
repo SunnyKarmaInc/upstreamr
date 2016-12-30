@@ -44,7 +44,9 @@ class DirectRoute extends React.Component {
             <span className='time-num'>{totalTime}</span>
             <span className='time-type'>min</span>
           </p>
-          <div className='standing-person-icon'></div>
+          <div className="person-icon">
+            <div className='standing-person-icon'></div>
+          </div>
           <p className='time-label'>DestinationETA</p>
           <p>
             <span className='time-num'>{parsedEta}</span>
