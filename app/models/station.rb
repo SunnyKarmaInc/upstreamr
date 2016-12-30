@@ -19,8 +19,8 @@ class Station < ActiveRecord::Base
     travel_time = bart_travel_time.time_in_min
 
     # TODO uncomment when BartTravelTime model will have destination info
-    # final_destination = bart_travel_time.final_destination
-    final_destination = 'rich'
+    final_destination = bart_travel_time.final_destination
+    # final_destination = 'rich'
 
     next_bart = bart_station.departures.select do |d|
       d.destination.abbr == final_destination
