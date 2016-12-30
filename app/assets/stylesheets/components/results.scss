@@ -15,9 +15,16 @@
   justify-content: space-between;
 }
 
+.start-end-labels {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+}
+
 .start {
 	font-size: 18px;
-  padding: 15px 0 78px 25px;
+  padding: 15px 0 78px;
 }
 
 .dest {
