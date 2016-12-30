@@ -17,7 +17,7 @@ class Results extends React.Component {
           finalEta: '18:01',
           upsteamColor: '',
           upsteamDestination: '',
-          downstreamColor: 'yellow',
+          downstreamColor: 'YELLOW',
           downstreamDestination: 'ptsb',
           transferArrival: '',
           transferDeparture: '',

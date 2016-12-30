@@ -1,5 +1,30 @@
 $green: #30a72c;
+$blue: #1787F9;
+$yellow: #FFDC00;
+$red: #d75420;
+
 $light-blue: #1cb9d0;
 $gray: #F5F5F5;
 $dark-gray: #4a4a4a;
 $light-grey: #9b9b9b;
+
+
+.GREEN {
+  background-color: $green;
+  border-color: $green;
+}
+
+.BLUE {
+  background-color: $blue;
+  border-color: $blue;
+}
+
+.RED {
+  background-color: $red;
+  border-color: $red;
+}
+
+.YELLOW {
+  background-color: $yellow;
+  border-color: $yellow;
+}

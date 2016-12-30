@@ -3,6 +3,7 @@ import React from 'react';
 class DirectRoute extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
   }
 
   render() {
@@ -17,6 +18,8 @@ class DirectRoute extends React.Component {
     const startInMin = (parseInt(start[0]) * 60) + parseInt(start[1]);
 
     const totalTime = finalInMin - startInMin;
+
+    const color = route.downstreamColor;
 
     if (finalHours > 12) {
       parsedEta = `${finalHours - 12}:${final[1]}`;
@@ -33,10 +36,10 @@ class DirectRoute extends React.Component {
           <p className='dest'>{this.props.dest}</p>
         </div>
         <div className='direct-route-schema'>
-          <div className='start-station-icon'></div>
-          <div className='long-line'></div>
-          <div className='arrow-dest-bottom'></div>
-          <div className='dest-station-icon'></div>
+          <div className={`start-station-icon ${color}`}></div>
+          <div className={`long-line ${color}`}></div>
+          <div className={`arrow-dest-bottom ${color}`}></div>
+          <div className={`dest-station-icon ${color}`}></div>
         </div>
         <div className='time-display'>
           <p className='time-label'>Travel downstream for</p>
