@@ -14,20 +14,27 @@ class Station < ActiveRecord::Base
   # chanceOfSeat: 'Likely'
   def self.find_fastest(start, dest)
     bart_station = Bart::Station.new(abbr: start)
-    bart_travel_time = BartTravelTime.find_by(start: start, end: dest)
+    bart_travel_time = BartTravelTime.where(start: start, end: dest)
     return "Incorrect route" if bart_travel_time.nil?
-    travel_time = bart_travel_time.time_in_min
+    travel_time = bart_travel_time.first.time_in_min
 
     # TODO uncomment when BartTravelTime model will have destination info
-    final_stop = bart_travel_time.final_stop
+    final_stops = bart_travel_time.map(&:final_stop)
     # final_stop = 'rich'
 
-    next_bart = bart_station.departures.select do |d|
-      d.destination.abbr == final_stop
-    end.first.estimates.first
+    next_barts = bart_station.departures.select do |d|
+      final_stops.include?(d.destination.abbr)
+    end
 
-    p next_bart
-
+    next_bart = ''
+    next_barts.each_with_index do |line, idx|
+      if idx.zero?
+        next_bart = line.estimates.first
+      elsif next_bart.minutes > line.estimates.first.minutes
+        next_bart = line.estimates.first
+      end
+    end
+    
     fastest = {}
 
     fastest[:currentDeparture] = Station.current_time + next_bart.minutes.minutes
