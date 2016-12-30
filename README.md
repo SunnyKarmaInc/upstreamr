@@ -88,6 +88,7 @@ JSON Hash:
     fastest: {
       transfer: '',
       currentDeparture: '17:48',
+      finalEta: 18:01,
       upsteamColor: '',
       upsteamDestination: '',
       downstreamColor: 'yellow',
@@ -101,6 +102,7 @@ JSON Hash:
     optimal: {
       transfer: 'civic',
       currentDeparture: '17:26',
+      finalEta: 18:05,
       upsteamColor: 'red',
       upsteamDestination: 'mlbr',
       transferArrival: '17:30',
@@ -114,6 +116,7 @@ JSON Hash:
     guaranteedSeat: {
       transfer: 'UN Plaza',
       currentDeparture: '17:30',
+      finalEta: 18:11,
       upsteamColor: 'red',
       upsteamDestination: 'mlbr',
       transferArrival: '17:35',

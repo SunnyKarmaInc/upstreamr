@@ -7,17 +7,24 @@
 
 .results-box {
   width: 340px;
-	height: 189px;
-  margin-top: 20px;
+	height: 200px;
+  margin: 20px 0 20px;
 	background-color: #ffffff;
 	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: space-between;
 }
 
+.start-end-labels {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-around;
+}
+
 .start {
 	font-size: 18px;
-  padding: 15px 0 78px 25px;
+  padding: 15px 0 78px;
 }
 
 .dest {
@@ -30,6 +37,12 @@
 	font-size: 18px;
 	font-weight: 300;
 	color: #d0021b;
+}
+
+.likely {
+	font-size: 18px;
+	font-weight: 300;
+	color: #30a62c;
 }
 
 .time-display {
@@ -53,9 +66,42 @@
 }
 
 .person-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.standing-person-icon {
   background: image-url('standing_person.png');
   background-size: contain;
   background-repeat: no-repeat;
   height: 20px;
+  width: 20px;
   margin-bottom: 10px;
+}
+
+.sitting-person-icon {
+  background: image-url('sitting_person.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 20px;
+  width: 20px;
+  margin-bottom: 10px;
+}
+
+/* upstream */
+
+.upstream-transfer {
+	font-size: 18px;
+	color: #4a4a4a;
+}
+
+.upstream-start {
+	font-size: 18px;
+}
+
+.upstream-dest {
+	font-size: 14px;
+	color: $light-grey;
+  padding: 10px 0 10px 65px;
 }

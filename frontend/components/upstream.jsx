@@ -1,9 +1,8 @@
 import React from 'react';
 
-class DirectRoute extends React.Component {
+class Upstream extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
   }
 
   render() {
@@ -14,12 +13,10 @@ class DirectRoute extends React.Component {
     const finalHours = parseInt(final[0]);
     const finalInMin = (parseInt(final[0]) * 60) + parseInt(final[1]);
 
-    const start = route.currentDeparture.split(':');
+    const start = route.transferDeparture.split(':');
     const startInMin = (parseInt(start[0]) * 60) + parseInt(start[1]);
 
     const totalTime = finalInMin - startInMin;
-
-    const color = route.downstreamColor;
 
     if (finalHours > 12) {
       parsedEta = `${finalHours - 12}:${final[1]}`;
@@ -32,14 +29,19 @@ class DirectRoute extends React.Component {
     return (
       <div className='results-box'>
         <div className='start-end-labels'>
-          <p className='start'>{this.props.start}</p>
-          <p className='dest'>{this.props.dest}</p>
+          <p className='upstream-transfer'>{this.props.route.transfer}</p>
+          <p className='upstream-start'>{this.props.start}</p>
+          <p className='upstream-dest'>{this.props.dest}</p>
         </div>
-        <div className='direct-route-schema'>
-          <div className={`start-station-icon ${color}`}></div>
-          <div className={`long-line ${color}`}></div>
-          <div className={`arrow-dest-bottom ${color}`}></div>
-          <div className={`dest-station-icon ${color}`}></div>
+        <div className='upstream-route-schema'>
+          <div className={`start-station-icon ${route.upsteamColor}`}></div>
+          <div className={`transfer-station-icon ${route.upsteamColor}`}></div>
+          <div className={`dest-station-icon ${route.downstreamColor}`}></div>
+          <div className={`start-dest-line LIGHT-GREY`}></div>
+          <div className={`start-transfer-line ${route.upsteamColor}`}></div>
+          <div className={`transfer-dest-line ${route.downstreamColor}`}></div>
+          <div className={`start-transfer-arrow ${route.upsteamColor}`}></div>
+          <div className={`transfer-dest-arrow ${route.downstreamColor}`}></div>
         </div>
         <div className='time-display'>
           <p className='time-label'>Travel downstream for</p>
@@ -47,8 +49,8 @@ class DirectRoute extends React.Component {
             <span className='time-num'>{totalTime}</span>
             <span className='time-type'>min</span>
           </p>
-          <div className="person-icon">
-            <div className='standing-person-icon'></div>
+          <div className='person-icon'>
+            <div className='sitting-person-icon'></div>
           </div>
           <p className='time-label'>DestinationETA</p>
           <p>
@@ -62,4 +64,4 @@ class DirectRoute extends React.Component {
   }
 }
 
-export default DirectRoute;
+export default Upstream;

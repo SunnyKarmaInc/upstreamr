@@ -9,7 +9,11 @@ class Upstreamr extends React.Component {
   constructor() {
     super();
 
-    this.state = { input: true };
+    this.state = { input: false };
+  }
+
+  displayResults(results) {
+    this.setState({ input: true, results });
   }
 
   render() {
@@ -17,13 +21,13 @@ class Upstreamr extends React.Component {
       return (
         <div>
           <Navbar />
-          <ChooseDirectionsForm />
+          <ChooseDirectionsForm displayResults={this.displayResults.bind(this)}/>
         </div>);
     } else {
       return (
         <div>
           <Navbar />
-          <Results />
+          <Results results={this.state.results}/>
         </div>);
     }
   }

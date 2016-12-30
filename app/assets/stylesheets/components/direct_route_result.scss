@@ -1,0 +1,43 @@
+.direct-route-schema {
+  width: 100px;
+  position: relative;
+
+  .start-station-icon {
+    position: absolute;
+    top: 20px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+  }
+
+  .dest-station-icon {
+    position: absolute;
+    bottom: 27px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+  }
+
+  .long-line {
+    position: absolute;
+    top: 50px;
+    left: 13px;
+    width: 4px;
+    height: 80px;
+  }
+
+  .arrow-dest-bottom {
+    position: absolute;
+    background-color: transparent;
+    top: 130px;
+    left: 9px;
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top-width: 6px;
+    border-top-style: solid;
+  }
+}
