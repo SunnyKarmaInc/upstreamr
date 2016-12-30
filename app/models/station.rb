@@ -33,7 +33,7 @@ class Station < ActiveRecord::Base
     fastest[:currentDeparture] = Station.current_time + next_bart.minutes.minutes
     fastest[:downstreamColor] = next_bart.color
     fastest[:downstreamDestination] = dest
-    fastest[:downstreamArrival] = fastest[:currentDeparture] + travel_time.minutes
+    fastest[:finalEta] = fastest[:currentDeparture] + travel_time.minutes
     fastest[:chanceOfStand] = Station.chance_of_stand(start)
     fastest[:chanceOfSeat] = Station.chance_of_seat(start)
 

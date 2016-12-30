@@ -23,6 +23,7 @@ class StationsController < ApplicationController
       transferDeparture: '17:42',
       downstreamColor: 'yellow',
       downstreamDestination: 'ptsb',
+      finalEta: '18:15',
       chanceOfStand: 'Most likely',
       chanceOfSeat: 'Likely'
     }
@@ -40,6 +41,7 @@ class StationsController < ApplicationController
       transferDeparture: '17:52',
       downstreamColor: 'yellow',
       downstreamDestination: 'ptsb',
+      finalEta: '18:25',
       chanceOfStand: 'Most likely',
       chanceOfSeat: 'Likely'
     }
