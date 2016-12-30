@@ -34,7 +34,7 @@ class Station < ActiveRecord::Base
         next_bart = line.estimates.first
       end
     end
-    
+
     fastest = {}
 
     fastest[:currentDeparture] = Station.current_time + next_bart.minutes.minutes
@@ -53,18 +53,29 @@ class Station < ActiveRecord::Base
   end
 
   def self.chance_of_stand(station)
-    case Station.current_time.hour
-    when 7, 10, 15, 19 then 'Likely'
-    when 8..9, 16..18 then 'Unlikely'
-    else 'Most likely'
+    # case Station.current_time.hour
+    # when 7, 10, 15, 19 then 'Likely'
+    # when 8..9, 16..18 then 'Unlikely'
+    # else 'Most likely'
+    # end
+    if Station.current_time.hour > 15 && Station.current_time.hour < 19
+      case station
+        when 'embr' then 'Unlikely'
+        when 'mont' then 'Unlikely'
+        when 'powl' then 'Likely'
+        when 'civc' then 'Most likely'
+      end
     end
   end
 
   def self.chance_of_seat(station)
-    case Station.current_time.hour
-    when 7, 10, 15, 19 then 'Unlikely'
-    when 8..9, 16..18 then 'Most unlikely'
-    else 'Likely'
+    if Station.current_time.hour > 15 && Station.current_time.hour < 19
+      case station
+        when 'embr' then 'Most unlikely'
+        when 'mont' then 'Unlikely'
+        when 'powl' then 'Likely'
+        when 'civc' then 'Most Likely'
+      end
     end
   end
 
