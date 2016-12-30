@@ -13,7 +13,7 @@ class Upstream extends React.Component {
     const finalHours = parseInt(final[0]);
     const finalInMin = (parseInt(final[0]) * 60) + parseInt(final[1]);
 
-    const start = route.currentDeparture.split(':');
+    const start = route.transferDeparture.split(':');
     const startInMin = (parseInt(start[0]) * 60) + parseInt(start[1]);
 
     const totalTime = finalInMin - startInMin;
@@ -29,8 +29,9 @@ class Upstream extends React.Component {
     return (
       <div className='results-box'>
         <div className='start-end-labels'>
-          <p className='start'>{this.props.start}</p>
-          <p className='dest'>{this.props.dest}</p>
+          <p className='upstream-transfer'>{this.props.route.transfer}</p>
+          <p className='upstream-start'>{this.props.start}</p>
+          <p className='upstream-dest'>{this.props.dest}</p>
         </div>
         <div className='time-display'>
           <p className='time-label'>Travel downstream for</p>
@@ -38,7 +39,7 @@ class Upstream extends React.Component {
             <span className='time-num'>{totalTime}</span>
             <span className='time-type'>min</span>
           </p>
-          <div className='person-icon'></div>
+          <div className='sitting-person-icon'></div>
           <p className='time-label'>DestinationETA</p>
           <p>
             <span className='time-num'>{parsedEta}</span>
