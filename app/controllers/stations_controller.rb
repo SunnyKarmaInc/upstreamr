@@ -2,9 +2,7 @@ class StationsController < ApplicationController
   def index
   end
 
-  def show
-    # @station = Station.find_by_start_and_end(params[:start],
-    #                                         params[:end])
+  def directions
     render json: {
                   start: 'embr',
                   end: 'rock',
@@ -49,6 +47,12 @@ class StationsController < ApplicationController
                       }
                     }
                   }
+  end
+
+  def show
+    # @station = Station.find_by_start_and_end(params[:start],
+    #                                         params[:end])
+
   end
 
   def station_params
