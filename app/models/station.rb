@@ -15,8 +15,9 @@ class Station < ActiveRecord::Base
   def self.find_fastest(start, dest)
     bart_station = Bart::Station.new(abbr: start)
     bart_travel_time = BartTravelTime.find_by(start: start, end: dest)
+    return "Incorrect route" if bart_travel_time.nil?
     travel_time = bart_travel_time.time_in_min
-    
+
     # TODO uncomment when BartTravelTime model will have destination info
     # final_destination = bart_travel_time.final_destination
     final_destination = 'rich'
@@ -37,7 +38,7 @@ class Station < ActiveRecord::Base
     fastest[:chanceOfSeat] = Station.chance_of_seat(start)
 
     # p fastest
-    return fastest
+    fastest
   end
 
   def self.current_time

@@ -9,18 +9,7 @@ class StationsController < ApplicationController
     # Should be something like
     # Station.find_fastest(start: @start, end: @end)
     # And it should return Hash
-    @fastest = {
-      transfer: '',
-      currentDeparture: '17:48',
-      upsteamColor: '',
-      upsteamDestination: '',
-      downstreamColor: 'yellow',
-      downstreamDestination: 'ptsb',
-      transferArrival: '',
-      transferDeparture: '',
-      chanceOfStand: 'Most likely',
-      chanceOfSeat: 'Likely'
-    }
+    @fastest = Station.find_fastest(@start, @dest)
 
     # Should be something like
     # Station.find_optimal(start: @start, end: @end)
