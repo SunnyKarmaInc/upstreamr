@@ -33,6 +33,16 @@ class Upstream extends React.Component {
           <p className='upstream-start'>{this.props.start}</p>
           <p className='upstream-dest'>{this.props.dest}</p>
         </div>
+        <div className='upstream-route-schema'>
+          <div className='start-station-icon'></div>
+          <div className='transfer-station-icon'></div>
+          <div className='dest-station-icon'></div>
+          <div className='start-dest-line'></div>
+          <div className='start-transfer-line'></div>
+          <div className='transfer-dest-line'></div>
+          <div className='start-transfer-arrow'></div>
+          <div className='transfer-dest-arrow'></div>
+        </div>
         <div className='time-display'>
           <p className='time-label'>Travel downstream for</p>
           <p>
