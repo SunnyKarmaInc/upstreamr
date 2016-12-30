@@ -1,6 +1,7 @@
 import React from 'react';
 
 import DirectRoute from './directRoute';
+import Upstream from './upstream';
 
 class Results extends React.Component {
   constructor(props) {
@@ -61,7 +62,9 @@ class Results extends React.Component {
       <div className='results'>
         <p className='unlikely'>Most unlikely get a seat</p>
         <DirectRoute start={this.state.start} dest={this.state.destination}
-                     options={this.state.options}/>
+                     route={this.state.options.fastest} />
+        <Upstream start={this.state.start} dest={this.state.destination}
+                     route={this.state.options.guaranteedSeat} />
       </div>
     );
   }

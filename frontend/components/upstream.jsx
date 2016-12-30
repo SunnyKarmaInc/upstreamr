@@ -1,6 +1,6 @@
 import React from 'react';
 
-class DirectRoute extends React.Component {
+class Upstream extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -51,4 +51,4 @@ class DirectRoute extends React.Component {
   }
 }
 
-export default DirectRoute;
+export default Upstream;
