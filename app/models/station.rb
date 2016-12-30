@@ -1,6 +1,15 @@
 class Station < ActiveRecord::Base
   validates :name, :abbr, presence: true, uniqueness: true
 
+
+  def self.name_to_abbr(name)
+    Bart::Station::LIST.select { |s| s[:name].include?(name) }.first[:id]
+  end
+
+  def self.abbr_to_name(abbr)
+    Bart::Station::LIST.select { |s| s[:abbr] == abbr }.first[:id]
+  end
+
   # transfer: '',
   # currentDeparture: '17:48',
   # upsteamColor: '',
@@ -37,10 +46,10 @@ class Station < ActiveRecord::Base
 
     fastest = {}
 
-    fastest[:currentDeparture] = Station.current_time + next_bart.minutes.minutes
+    fastest[:currentDeparture] = (Station.current_time + next_bart.minutes.minutes).strftime("%H:%M")
     fastest[:downstreamColor] = next_bart.color
     fastest[:downstreamDestination] = dest
-    fastest[:finalEta] = fastest[:currentDeparture] + travel_time.minutes
+    fastest[:finalEta] = (Station.current_time + next_bart.minutes.minutes + travel_time.minutes).strftime("%H:%M")
     fastest[:chanceOfStand] = Station.chance_of_stand(start)
     fastest[:chanceOfSeat] = Station.chance_of_seat(start)
 

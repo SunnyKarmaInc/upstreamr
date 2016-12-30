@@ -16,21 +16,25 @@
 }
 
 .start-end-labels {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-around;
+  position: relative;
+  width: 170px;
 }
 
 .start {
+  position: absolute;
+  top: 15px;
 	font-size: 18px;
-  padding: 15px 0 78px;
+  text-align: right;
+  width: 100%;
 }
 
 .dest {
+  position: absolute;
+  bottom: 27px;
 	font-size: 14px;
+  text-align: right;
 	color: $light-grey;
-  padding: 15px 0 25px 65px;
+  width: 100%;
 }
 
 .unlikely {

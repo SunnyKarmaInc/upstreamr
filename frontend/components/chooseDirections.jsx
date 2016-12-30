@@ -6,14 +6,14 @@ class ChooseDirectionsForm extends React.Component {
     super(props);
 
     this.state = {
-      start: "Embracadero",
+      start: "Embarcadero",
       destination: ""
     };
 
     this.startStations =
-      ['Embracadero',
-       'Montgomery St',
-       'Powell St',
+      ['Embarcadero',
+       'Montgomery St.',
+       'Powell St.',
        'Civic Center'];
 
     this.destinationStations =

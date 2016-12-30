@@ -3,13 +3,15 @@ class StationsController < ApplicationController
   end
 
   def directions
+    @start_abbr = Station.name_to_abbr(params[:start])
+    @dest_abbr = Station.name_to_abbr(params[:end])
+
     @start = params[:start]
     @dest = params[:end]
-
     # Should be something like
     # Station.find_fastest(start: @start, end: @end)
     # And it should return Hash
-    @fastest = Station.find_fastest(@start, @dest)
+    @fastest = Station.find_fastest(@start_abbr, @dest_abbr)
 
     # Should be something like
     # Station.find_optimal(start: @start, end: @end)
