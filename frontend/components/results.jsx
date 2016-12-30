@@ -58,7 +58,7 @@ class Results extends React.Component {
   render() {
 
     return (
-      <div className='this.state'>
+      <div className='results'>
         <p className='unlikely'>Most unlikely get a seat</p>
         <DirectRoute start={this.state.start} dest={this.state.destination}
                      options={this.state.options}/>
