@@ -60,22 +60,41 @@ class Station < ActiveRecord::Base
     # end
     if Station.current_time.hour > 15 && Station.current_time.hour < 19
       case station
-        when 'embr' then 'Unlikely'
-        when 'mont' then 'Unlikely'
-        when 'powl' then 'Likely'
-        when 'civc' then 'Most likely'
+      when 'embr' then 'Unlikely'
+      when 'mont' then 'Unlikely'
+      when 'powl' then 'Likely'
+      when 'civc' then 'Most likely'
       end
+    elsif Station.current_time.hour == 15 || Station.current_time.hour = 19
+      case station
+      when 'embr' then 'Likely'
+      when 'mont' then 'Likely'
+      when 'powl' then 'Most likely'
+      when 'civc' then 'Most likely'
+      end
+    else
+      'Most likely'
     end
+
   end
 
   def self.chance_of_seat(station)
     if Station.current_time.hour > 15 && Station.current_time.hour < 19
       case station
-        when 'embr' then 'Most unlikely'
-        when 'mont' then 'Unlikely'
-        when 'powl' then 'Likely'
-        when 'civc' then 'Most Likely'
+      when 'embr' then 'Most unlikely'
+      when 'mont' then 'Unlikely'
+      when 'powl' then 'Likely'
+      when 'civc' then 'Most Likely'
       end
+    elsif Station.current_time.hour == 15 || Station.current_time.hour = 19
+      case station
+      when 'embr' then 'Unlikely'
+      when 'mont' then 'Likely'
+      when 'powl' then 'Likely'
+      when 'civc' then 'Most likely'
+      end
+    else
+      'Most likely'
     end
   end
 
