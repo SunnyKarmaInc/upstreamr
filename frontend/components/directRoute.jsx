@@ -32,6 +32,12 @@ class DirectRoute extends React.Component {
           <p className='start'>{this.props.start}</p>
           <p className='dest'>{this.props.dest}</p>
         </div>
+        <div className='direct-route-schema'>
+          <div className='start-station-icon'></div>
+          <div className='long-line'></div>
+          <div className='arrow-dest-bottom'></div>
+          <div className='dest-station-icon'></div>
+        </div>
         <div className='time-display'>
           <p className='time-label'>Travel downstream for</p>
           <p>
