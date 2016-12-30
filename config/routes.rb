@@ -55,4 +55,10 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  resources :bart_travel_times
+  resources :stations
+
+  get 'directions' => 'stations#directions'
+
 end
