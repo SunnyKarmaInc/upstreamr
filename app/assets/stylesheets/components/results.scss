@@ -96,16 +96,27 @@
 /* upstream */
 
 .upstream-transfer {
+  position: absolute;
+  top: 15px;
 	font-size: 18px;
+  text-align: right;
+  width: 100%;
 	color: #4a4a4a;
 }
 
 .upstream-start {
+  position: absolute;
+  top: 86px;
 	font-size: 18px;
+  text-align: right;
+  width: 100%;
 }
 
 .upstream-dest {
+  position: absolute;
+  bottom: 21px;
 	font-size: 14px;
+  text-align: right;
+  width: 100%;
 	color: $light-grey;
-  padding: 10px 0 10px 65px;
 }
