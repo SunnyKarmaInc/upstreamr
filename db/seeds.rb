@@ -6,6 +6,9 @@
 # SEED bart_travel_times #
 ##########################
 
+##############
+# downstream #
+##############
 ## from embarcadero ('rich'(red), 'dubl'(blue) lines)
 BartTravelTime.create(start: 'embr', end: 'woak', time_in_min: 7, final_stop: 'rich')
 BartTravelTime.create(start: 'embr', end: '12th', time_in_min: 11, final_stop: 'rich')
@@ -210,3 +213,23 @@ BartTravelTime.create(start: 'civc', end: 'hayw', time_in_min: 35, final_stop: '
 BartTravelTime.create(start: 'civc', end: 'shay', time_in_min: 39, final_stop: 'frmt')
 BartTravelTime.create(start: 'civc', end: 'ucty', time_in_min: 44, final_stop: 'frmt')
 BartTravelTime.create(start: 'civc', end: 'frmt', time_in_min: 50, final_stop: 'frmt')
+
+############
+# upstream #
+############
+BartTravelTime.create(start: 'embr', end: 'mont', time_in_min: 1, final_stop: 'daly')
+BartTravelTime.create(start: 'embr', end: 'mont', time_in_min: 1, final_stop: 'mlbr')
+BartTravelTime.create(start: 'embr', end: 'mont', time_in_min: 1, final_stop: '24th')
+BartTravelTime.create(start: 'embr', end: 'powl', time_in_min: 3, final_stop: 'daly')
+BartTravelTime.create(start: 'embr', end: 'powl', time_in_min: 3, final_stop: 'mlbr')
+BartTravelTime.create(start: 'embr', end: 'powl', time_in_min: 3, final_stop: '24th')
+BartTravelTime.create(start: 'embr', end: 'civc', time_in_min: 4, final_stop: 'daly')
+BartTravelTime.create(start: 'embr', end: 'civc', time_in_min: 4, final_stop: 'mlbr')
+BartTravelTime.create(start: 'embr', end: 'civc', time_in_min: 4, final_stop: '24th')
+
+BartTravelTime.create(start: 'mont', end: 'powl', time_in_min: 2, final_stop: 'mlbr')
+BartTravelTime.create(start: 'mont', end: 'powl', time_in_min: 2, final_stop: '24th')
+BartTravelTime.create(start: 'mont', end: 'powl', time_in_min: 2, final_stop: 'mlbr')
+BartTravelTime.create(start: 'mont', end: 'civc', time_in_min: 3, final_stop: 'mlbr')
+BartTravelTime.create(start: 'mont', end: 'civc', time_in_min: 3, final_stop: '24th')
+BartTravelTime.create(start: 'mont', end: 'civc', time_in_min: 3, final_stop: 'mlbr')
