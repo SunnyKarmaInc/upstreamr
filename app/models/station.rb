@@ -10,15 +10,10 @@ class Station < ActiveRecord::Base
     Bart::Station::LIST.select { |s| s[:abbr] == abbr }.first[:id]
   end
 
-  # transfer: '',
   # currentDeparture: '17:48',
-  # upsteamColor: '',
-  # upsteamDestination: '',
   # downstreamColor: 'yellow',
   # downstreamDestination: 'ptsb',
   # downstreamArrival: '18:15',
-  # transferArrival: '',
-  # transferDeparture: '',
   # chanceOfStand: 'Most likely',
   # chanceOfSeat: 'Likely'
   def self.find_fastest(start, dest)
@@ -27,9 +22,7 @@ class Station < ActiveRecord::Base
     return "Incorrect route" if bart_travel_time.nil?
     travel_time = bart_travel_time.first.time_in_min
 
-    # TODO uncomment when BartTravelTime model will have destination info
     final_stops = bart_travel_time.map(&:final_stop)
-    # final_stop = 'rich'
 
     next_barts = bart_station.departures.select do |d|
       final_stops.include?(d.destination.abbr)
@@ -62,11 +55,6 @@ class Station < ActiveRecord::Base
   end
 
   def self.chance_of_stand(station)
-    # case Station.current_time.hour
-    # when 7, 10, 15, 19 then 'Likely'
-    # when 8..9, 16..18 then 'Unlikely'
-    # else 'Most likely'
-    # end
     if Station.current_time.hour > 15 && Station.current_time.hour < 19
       case station
       when 'embr' then 'Unlikely'
@@ -74,7 +62,7 @@ class Station < ActiveRecord::Base
       when 'powl' then 'Likely'
       when 'civc' then 'Most likely'
       end
-    elsif Station.current_time.hour == 15 || Station.current_time.hour = 19
+    elsif Station.current_time.hour == 15 || Station.current_time.hour == 19
       case station
       when 'embr' then 'Likely'
       when 'mont' then 'Likely'
@@ -95,7 +83,7 @@ class Station < ActiveRecord::Base
       when 'powl' then 'Likely'
       when 'civc' then 'Most Likely'
       end
-    elsif Station.current_time.hour == 15 || Station.current_time.hour = 19
+    elsif Station.current_time.hour == 15 || Station.current_time.hour == 19
       case station
       when 'embr' then 'Unlikely'
       when 'mont' then 'Likely'
@@ -107,29 +95,62 @@ class Station < ActiveRecord::Base
     end
   end
 
-  def fastest_travel_time_to(destination)
-    #get info from table unless can get from BART API
+
+  # transfer: 'civic',
+  # currentDeparture: '17:26',
+  # upsteamColor: 'RED',
+  # upsteamDestination: 'mlbr',
+  # transferArrival: '17:30',
+  # transferDeparture: '17:42',
+  # downstreamColor: 'YELLOW',
+  # downstreamDestination: 'ptsb',
+  # finalEta: '18:15',
+  # chanceOfStand: 'Most likely',
+  # chanceOfSeat: 'Likely'
+  def self.find_optimal(start, dest)
+    bart_station = Bart::Station.new(abbr: start)
+
+    # find next bart downstream
+    # if arrival time < 5min - there is no optimal route
+
+    # find next bart upstream
+    # calculate arrival time on each station upstream
+
+    # find same train on ustream strations
+    # and calculate departure time on each station upstream
+
+    # select only options that matches arrival <-> departure
+    # select last one ( more chances to get a seat)
+
   end
 
-  def wait_time(destination)
-    next_arrival_time(destination) - current_time
+  def self.find_guaranteed_seat(start, dest)
+
   end
 
-  def total_travel_time_to(destination)
-    wait_time(destination) + fastest_travel_time(destination)
-  end
-
-  def next_arrival(destination)
-    #logic to determine which line user should get on
-    #Bart API to determine when next train of that line will arrive
-    #
-    #return Hash with
-    # departure_time ""
-    #
-  end
-
-  def travel_time_from(station)
-    station.total_travel_time_to(self)
-  end
+  # def fastest_travel_time_to(destination)
+  #   #get info from table unless can get from BART API
+  # end
+  #
+  # def wait_time(destination)
+  #   next_arrival_time(destination) - current_time
+  # end
+  #
+  # def total_travel_time_to(destination)
+  #   wait_time(destination) + fastest_travel_time(destination)
+  # end
+  #
+  # def next_arrival(destination)
+  #   #logic to determine which line user should get on
+  #   #Bart API to determine when next train of that line will arrive
+  #   #
+  #   #return Hash with
+  #   # departure_time ""
+  #   #
+  # end
+  #
+  # def travel_time_from(station)
+  #   station.total_travel_time_to(self)
+  # end
 
 end
