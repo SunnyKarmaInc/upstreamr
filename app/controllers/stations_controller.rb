@@ -1,7 +1,7 @@
 class StationsController < ApplicationController
   def index
   end
-
+#### happy new year -Dan 1/1/2017
   def directions
     @start_abbr = Station.name_to_abbr(params[:start])
     @dest_abbr = Station.name_to_abbr(params[:end])
