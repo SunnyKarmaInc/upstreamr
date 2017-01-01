@@ -7,6 +7,7 @@ class DirectRoute extends React.Component {
   }
 
   render() {
+    // Parse json for display
     let parsedEta;
     let timeType;
     const route = this.props.route;
