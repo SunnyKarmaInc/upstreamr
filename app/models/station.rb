@@ -43,13 +43,13 @@ class Station < ActiveRecord::Base
     fastest = {}
 
     fastest[:currentDeparture] = (Station.current_time + next_bart.minutes.minutes).strftime("%H:%M")
+    fastest[:waitTime] = next_bart.minutes
     fastest[:downstreamColor] = next_bart.color
     fastest[:downstreamDestination] = dest
     fastest[:finalEta] = (Station.current_time + next_bart.minutes.minutes + travel_time.minutes).strftime("%H:%M")
     fastest[:chanceOfStand] = Station.chance_of_stand(start)
     fastest[:chanceOfSeat] = Station.chance_of_seat(start)
 
-    # p fastest
     fastest
   end
 
@@ -110,13 +110,21 @@ class Station < ActiveRecord::Base
   # finalEta: '18:15',
   # chanceOfStand: 'Most likely',
   # chanceOfSeat: 'Likely'
-  def self.find_optimal(start, dest)
-    bart_station = Bart::Station.new(abbr: start)
+  def self.find_optimal(start, dest, fastest_downstream)
+    downtown_stations = ['civc', 'powl', 'mont', 'embr']
+    upstream_stations =
+      downtown_stations.select.with_index do |st, idx|
+        idx < downtown_stations[start]
+      end
 
     # find next bart downstream
     # if arrival time < 5min - there is no optimal route
+    # NB moved this ^ logic to startion_controller
 
     # find next bart upstream
+    fastest_upstream = Station.find_fastest(start, "civc")
+
+
     # calculate arrival time on each station upstream
 
     # find same train on ustream strations

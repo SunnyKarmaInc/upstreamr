@@ -16,19 +16,25 @@ class StationsController < ApplicationController
     # Should be something like
     # Station.find_optimal(start: @start, end: @end)
     # And it should return Hash
-    @optimal = {
-      transfer: 'civic',
-      currentDeparture: '17:26',
-      upsteamColor: 'RED',
-      upsteamDestination: 'mlbr',
-      transferArrival: '17:30',
-      transferDeparture: '17:42',
-      downstreamColor: 'YELLOW',
-      downstreamDestination: 'ptsb',
-      finalEta: '18:15',
-      chanceOfStand: 'Most likely',
-      chanceOfSeat: 'Likely'
-    }
+    # @optimal = {
+    #   transfer: 'civic',
+    #   currentDeparture: '17:26',
+    #   upsteamColor: 'RED',
+    #   upsteamDestination: 'mlbr',
+    #   transferArrival: '17:30',
+    #   transferDeparture: '17:42',
+    #   downstreamColor: 'YELLOW',
+    #   downstreamDestination: 'ptsb',
+    #   finalEta: '18:15',
+    #   chanceOfStand: 'Most likely',
+    #   chanceOfSeat: 'Likely'
+    # }
+
+    @optimal = if @fastest[:waitTime] < 5
+                 "Can not catch next train on upstream"
+               else
+                 Station.find_optimal(@start_abbr, @dest_abbr, @fastest)
+               end
 
     # Should be soething like
     # If Optimal chanceOfSeat is bad then
