@@ -25,8 +25,11 @@ class Station < ActiveRecord::Base
     final_stops = bart_travel_time.map(&:final_stop)
 
     next_barts = bart_station.departures.select do |d|
-      final_stops.include?(d.destination.abbr)
+      final_stops.include?(d.destination.abbr) &&
+        d.estimates.first.color != 'WHITE'
     end
+
+    return "No direct Barts" if next_barts.empty?
 
     next_bart = ''
     next_barts.each_with_index do |line, idx|
