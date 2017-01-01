@@ -7,7 +7,8 @@ class ChooseDirectionsForm extends React.Component {
 
     this.state = {
       start: "Embarcadero",
-      destination: ""
+      destination: "",
+      message: ""
     };
 
     this.startStations =
@@ -65,10 +66,13 @@ class ChooseDirectionsForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state);
-    // ajax post request to server with inputs
-    // go to options page on success
-    this.loadResults();
+
+    if (this.state.destination === "") {
+      this.setState({ message: "Please select your destination" });
+    } else {
+      this.setState({ message: "Sending request.." });
+      this.loadResults();
+    }
   }
 
   loadResults() {
@@ -84,18 +88,18 @@ class ChooseDirectionsForm extends React.Component {
       if (request.status >= 200 && request.status < 400) {
         // Success!
         const resp = JSON.parse(request.responseText);
-        this.props.displayResults(resp);
+        if (typeof resp.options.fastest === 'string') {
+          this.setState({ message: resp.options.fastest });
+        } else {
+          this.props.displayResults(resp);
+        }
       } else {
         // We reached our target server, but it returned an error
-        console.log(request.status);
       }
     };
 
     request.onerror = function() {
       // There was a connection error of some sort
-      console.log(request);
-      console.log("Connection error, trying again..");
-      // this.loadWeatherData({ lat, lon });
     };
 
     request.send();
@@ -138,6 +142,7 @@ class ChooseDirectionsForm extends React.Component {
             {destinationOptions}
           </select>
         </div>
+        <span className="message">{this.state.message}</span>
         <span>Do your magic and</span>
         <button className="submit"
                 onClick={this.handleSubmit}>
