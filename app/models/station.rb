@@ -60,6 +60,7 @@ class Station < ActiveRecord::Base
     fastest[:currentDeparture] = (Station.current_time + next_bart.minutes.minutes).strftime("%H:%M")
     fastest[:waitTime] = next_bart.minutes
     fastest[:downstreamColor] = next_bart.color
+    fastest[:travelTime] = travel_time
     # fastest[:downstreamDestination] = dest
     fastest[:finalEta] = (Station.current_time + next_bart.minutes.minutes + travel_time.minutes).strftime("%H:%M")
     fastest[:chanceOfStand] = Station.chance_of_stand(start)
@@ -151,7 +152,7 @@ class Station < ActiveRecord::Base
           # upstreamDestination: fastest_upstream[downstreamDestination],
           transferArrival: transfer_arrival_time.strftime("%H:%M"),
           transferDeparture: transfer_departure.strftime("%H:%M"),
-          transferWaitTime: fastest_from_upstream[:waitTime],
+          transferWaitTime: fastest_from_upstream[:waitTime] - fastest_upstream[:waitTime] - fastest_upstream[:travelTime],
           downstreamColor: fastest_from_upstream[:downstreamColor],
           # downstreamDestination: fastest_from_upstream[downstreamDestination],
           finalEta: final_arrival_time.strftime("%H:%M"),
@@ -198,6 +199,8 @@ class Station < ActiveRecord::Base
           bart.minutes > transfer_arrival_time_in_minutes
         end
 
+      p final_bart
+
       travel_time =
         BartTravelTime.find_by(start: upstream_station, end: dest).time_in_min
 
@@ -209,7 +212,7 @@ class Station < ActiveRecord::Base
         # upstreamDestination: fastest_upstream[downstreamDestination],
         transferArrival: transfer_arrival_time.strftime("%H:%M"),
         transferDeparture: (Station.current_time + final_bart.minutes.minutes).strftime("%H:%M"),
-        transferWaitTime: final_bart.minutes,
+        transferWaitTime: final_bart.minutes - fastest_upstream[:waitTime] - fastest_upstream[:travelTime],
         downstreamColor: final_bart.color,
         # downstreamDestination: fastest_from_upstream[downstreamDestination],
         finalEta: (Station.current_time + final_bart.minutes.minutes + travel_time.minutes).strftime("%H:%M"),
