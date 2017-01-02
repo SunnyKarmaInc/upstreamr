@@ -1,0 +1,2 @@
+module BartTravelTimesHelper
+end

@@ -1,0 +1,87 @@
+
+.upstream-route-schema {
+  width: 100px;
+  position: relative;
+
+  .start-station-icon {
+    position: absolute;
+    top: 90px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+  }
+
+  .transfer-station-icon {
+    position: absolute;
+    top: 20px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+  }
+
+  .dest-station-icon {
+    position: absolute;
+    top: 159px;
+    left: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+  }
+
+  .start-dest-line {
+    position: absolute;
+    top: 115px;
+    left: 13px;
+    width: 4px;
+    height: 40px;
+    opacity: 0.5;
+  }
+
+  .start-transfer-line {
+    position: absolute;
+    top: 45px;
+    left: 13px;
+    width: 4px;
+    height: 40px;
+  }
+
+  .transfer-dest-line {
+    position: absolute;
+    top: 30px;
+    left: 35px;
+    width: 40px;
+    height: 141px;
+    border-width: 4px;
+    border-style: solid;
+    border-left: none;
+    background-color: transparent;
+  }
+
+  .start-transfer-arrow {
+    position: absolute;
+    top: 42px;
+    left: 9px;
+    width: 0;
+    height: 0;
+    background-color: transparent;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom-width: 6px;
+    border-bottom-style: solid;
+  }
+
+  .transfer-dest-arrow {
+    position: absolute;
+    top: 163px;
+    left: 30px;
+    width: 0;
+    height: 0;
+    background-color: transparent;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-right-width: 6px;
+    border-right-style: solid;
+  }
+}

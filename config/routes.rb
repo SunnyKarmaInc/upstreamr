@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'stations#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -53,4 +55,10 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+
+  resources :bart_travel_times
+  resources :stations
+
+  get 'directions' => 'stations#directions'
+
 end
