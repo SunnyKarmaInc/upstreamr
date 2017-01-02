@@ -87,7 +87,7 @@ class ChooseDirectionsForm extends React.Component {
     request.onload = () => {
       if (request.status >= 200 && request.status < 400) {
         // Success!
-        console.log(request.responseText);
+        // console.log(request.responseText);
         const resp = JSON.parse(request.responseText);
         if (typeof resp.options.fastest === 'string') {
           this.setState({ message: resp.options.fastest });
