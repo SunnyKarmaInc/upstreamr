@@ -132,9 +132,9 @@ class ChooseDirectionsForm extends React.Component {
       }
     return (
       <form className="choose-directions-form" >
-        <h3>Where you departing from?</h3>
+        <h3>Departure Station</h3>
         {startButtons}
-        <h3>Where is your destination?</h3>
+        <h3>Destination Station</h3>
         <div className="select-destination">
           <select value={selectValue}
                   className={selectClass}
@@ -147,7 +147,7 @@ class ChooseDirectionsForm extends React.Component {
         <span>Do your magic and</span>
         <button className="submit"
                 onClick={this.handleSubmit}>
-          Show me the options
+          Find me a seat!
         </button>
       </form>
     );
