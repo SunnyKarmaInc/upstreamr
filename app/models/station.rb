@@ -45,7 +45,7 @@ class Station < ActiveRecord::Base
     fastest[:currentDeparture] = (Station.current_time + next_bart.minutes.minutes).strftime("%H:%M")
     fastest[:waitTime] = next_bart.minutes
     fastest[:downstreamColor] = next_bart.color
-    fastest[:downstreamDestination] = dest
+    # fastest[:downstreamDestination] = dest
     fastest[:finalEta] = (Station.current_time + next_bart.minutes.minutes + travel_time.minutes).strftime("%H:%M")
     fastest[:chanceOfStand] = Station.chance_of_stand(start)
     fastest[:chanceOfSeat] = Station.chance_of_seat(start)
@@ -101,43 +101,46 @@ class Station < ActiveRecord::Base
 
   def self.find_optimal(start, dest, fastest_downstream)
     best_route = nil
+    fastest_arrival_time = fastest_downstream[:finalEta].to_time
+
     downtown_stations = ['embr', 'mont', 'powl', 'civc']
     upstream_stations =
       downtown_stations.select.with_index do |_, idx|
-        idx < downtown_stations.find_index(start)
+        idx > downtown_stations.find_index(start)
       end
 
-    # find next bart downstream
-    # if arrival time < 5min - there is no optimal route
-    # NB moved this ^ logic to startion_controller
-
-    # find next bart upstream
     upstream_stations.each do |upstream_station|
+      p upstream_station
+
       fastest_upstream = Station.find_fastest(start, upstream_station)
-      arrival_time = fastest_upstream[finalEta]
+      transfer_arrival_time = fastest_upstream[:finalEta].to_time
+
       fastest_from_upstream = Station.find_fastest(upstream_station, dest)
-      if fastest_from_upstream[finalEta] > fastest_downstream[finalEta] - 1.minutes &&
-         fastest_from_upstream[finalEta] < fastest_downstream[finalEta] + 1.minutes &&
-         fastest_from_upstream[currentDeparture] > arrival_time
+      transfer_departure = fastest_from_upstream[:currentDeparture].to_time
+      final_arrival_time = fastest_from_upstream[:finalEta].to_time
+
+      if final_arrival_time <= fastest_arrival_time + 1.minutes &&
+          transfer_departure > transfer_arrival_time
+
         best_route = {
           transfer: upstream_station,
-          currentDeparture: fastest_upstream[currentDeparture],
-          upstreamColor: fastest_upstream[downstreamColor],
-          upstreamDestination: fastest_upstream[downstreamDestination],
-          transferArrival: arrival_time,
-          transferDeparture: fastest_from_upstream[currentDeparture],
-          downstreamColor: fastest_from_upstream[downstreamColor],
-          downstreamDestination: fastest_from_upstream[downstreamDestination],
-          finalEta: fastest_from_upstream[finalEta],
-          chanceOfStand: fastest_from_upstream[chanceOfStand],
-          chanceOfSeat: fastest_from_upstream[chanceOfSeat]
+          currentDeparture: fastest_upstream[:currentDeparture],
+          upstreamColor: fastest_upstream[:downstreamColor],
+          # upstreamDestination: fastest_upstream[downstreamDestination],
+          transferArrival: transfer_arrival_time.strftime("%H:%M"),
+          transferDeparture: transfer_departure.strftime("%H:%M"),
+          downstreamColor: fastest_from_upstream[:downstreamColor],
+          # downstreamDestination: fastest_from_upstream[downstreamDestination],
+          finalEta: final_arrival_time.strftime("%H:%M"),
+          chanceOfStand: fastest_from_upstream[:chanceOfStand],
+          chanceOfSeat: fastest_from_upstream[:chanceOfSeat]
         }
       else
         break
       end
     end
 
-    best_route
+    best_route || "Can not catch the same train upstream"
   end
 
   def self.find_guaranteed_seat(start, dest)
