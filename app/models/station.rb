@@ -99,22 +99,12 @@ class Station < ActiveRecord::Base
   end
 
 
-  # transfer: 'civic',
-  # currentDeparture: '17:26',
-  # upsteamColor: 'RED',
-  # upsteamDestination: 'mlbr',
-  # transferArrival: '17:30',
-  # transferDeparture: '17:42',
-  # downstreamColor: 'YELLOW',
-  # downstreamDestination: 'ptsb',
-  # finalEta: '18:15',
-  # chanceOfStand: 'Most likely',
-  # chanceOfSeat: 'Likely'
   def self.find_optimal(start, dest, fastest_downstream)
+    best_route = nil
     downtown_stations = ['civc', 'powl', 'mont', 'embr']
     upstream_stations =
       downtown_stations.select.with_index do |st, idx|
-        idx < downtown_stations[start]
+        idx < downtown_stations.find_index(start)
       end
 
     # find next bart downstream
@@ -122,17 +112,31 @@ class Station < ActiveRecord::Base
     # NB moved this ^ logic to startion_controller
 
     # find next bart upstream
-    fastest_upstream = Station.find_fastest(start, "civc")
+    upstream_stations.each do |upstream_station|
+      fastest_upstream = Station.find_fastest(start, upstream_station)
+      arrival_time = fastest_upstream[finalEta]
+      fastest_from_upstream = Station.find_fastest(upstream_station, dest)
+      if fastest_from_upstream[finalEta] == fastest_downstream[finalEta] &&
+         fastest_from_upstream[currentDeparture] > arrival_time
+        best_route = {
+          transfer: upstream_station,
+          currentDeparture: fastest_upstream[currentDeparture],
+          upstreamColor: fastest_upstream[downstreamColor],
+          upstreamDestination: fastest_upstream[downstreamDestination],
+          transferArrival: arrival_time,
+          transferDeparture: fastest_from_upstream[currentDeparture],
+          downstreamColor: fastest_from_upstream[downstreamColor],
+          downstreamDestination: fastest_from_upstream[downstreamDestination],
+          finalEta: fastest_from_upstream[finalEta],
+          chanceOfStand: fastest_from_upstream[chanceOfStand],
+          chanceOfSeat: fastest_from_upstream[chanceOfSeat]
+        }
+      else
+        break
+      end
+    end
 
-
-    # calculate arrival time on each station upstream
-
-    # find same train on ustream strations
-    # and calculate departure time on each station upstream
-
-    # select only options that matches arrival <-> departure
-    # select last one ( more chances to get a seat)
-
+    best_route
   end
 
   def self.find_guaranteed_seat(start, dest)
