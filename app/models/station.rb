@@ -101,9 +101,9 @@ class Station < ActiveRecord::Base
 
   def self.find_optimal(start, dest, fastest_downstream)
     best_route = nil
-    downtown_stations = ['civc', 'powl', 'mont', 'embr']
+    downtown_stations = ['embr', 'mont', 'powl', 'civc']
     upstream_stations =
-      downtown_stations.select.with_index do |st, idx|
+      downtown_stations.select.with_index do |_, idx|
         idx < downtown_stations.find_index(start)
       end
 
@@ -116,7 +116,8 @@ class Station < ActiveRecord::Base
       fastest_upstream = Station.find_fastest(start, upstream_station)
       arrival_time = fastest_upstream[finalEta]
       fastest_from_upstream = Station.find_fastest(upstream_station, dest)
-      if fastest_from_upstream[finalEta] == fastest_downstream[finalEta] &&
+      if fastest_from_upstream[finalEta] > fastest_downstream[finalEta] - 1.minutes &&
+         fastest_from_upstream[finalEta] < fastest_downstream[finalEta] + 1.minutes &&
          fastest_from_upstream[currentDeparture] > arrival_time
         best_route = {
           transfer: upstream_station,
