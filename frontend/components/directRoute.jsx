@@ -17,7 +17,6 @@ class DirectRoute extends React.Component {
 
     const start = route.currentDeparture.split(':');
     const startInMin = (parseInt(start[0]) * 60) + parseInt(start[1]);
-
     const totalTime = finalInMin - startInMin;
 
     const color = route.downstreamColor;
@@ -33,7 +32,9 @@ class DirectRoute extends React.Component {
     return (
       <div className='results-box'>
         <div className='start-end-labels'>
-          <p className='start'>{this.props.start}</p>
+          <p className='start'>{this.props.start}
+            <span className='wait-time'>{route.waitTime}min</span>
+          </p>
           <p className='dest'>{this.props.dest}</p>
         </div>
         <div className='direct-route-schema'>

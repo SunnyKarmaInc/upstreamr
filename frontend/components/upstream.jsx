@@ -6,9 +6,14 @@ class Upstream extends React.Component {
   }
 
   render() {
+    const route = this.props.route;
+
+    if (typeof route === 'string') {
+      return <div className="no-result">{route}</div>;
+    }
+
     let parsedEta;
     let timeType;
-    const route = this.props.route;
     const final = route.finalEta.split(':');
     const finalHours = parseInt(final[0]);
     const finalInMin = (parseInt(final[0]) * 60) + parseInt(final[1]);
@@ -25,22 +30,22 @@ class Upstream extends React.Component {
       parsedEta = `${finalHours}:${final[1]}`;
       timeType = 'am';
     }
-
+    console.log(route);
     return (
       <div className='results-box'>
         <div className='start-end-labels'>
-          <p className='upstream-transfer'>{this.props.route.transfer}</p>
+          <p className='upstream-transfer'>{route.transfer}</p>
           <p className='upstream-start'>{this.props.start}</p>
           <p className='upstream-dest'>{this.props.dest}</p>
         </div>
         <div className='upstream-route-schema'>
-          <div className={`start-station-icon ${route.upsteamColor}`}></div>
-          <div className={`transfer-station-icon ${route.upsteamColor}`}></div>
+          <div className={`start-station-icon ${route.upstreamColor}`}></div>
+          <div className={`transfer-station-icon ${route.upstreamColor}`}></div>
           <div className={`dest-station-icon ${route.downstreamColor}`}></div>
           <div className={`start-dest-line LIGHT-GREY`}></div>
-          <div className={`start-transfer-line ${route.upsteamColor}`}></div>
+          <div className={`start-transfer-line ${route.upstreamColor}`}></div>
           <div className={`transfer-dest-line ${route.downstreamColor}`}></div>
-          <div className={`start-transfer-arrow ${route.upsteamColor}`}></div>
+          <div className={`start-transfer-arrow ${route.upstreamColor}`}></div>
           <div className={`transfer-dest-arrow ${route.downstreamColor}`}></div>
         </div>
         <div className='time-display'>
@@ -59,7 +64,6 @@ class Upstream extends React.Component {
           </p>
         </div>
       </div>
-
     );
   }
 }

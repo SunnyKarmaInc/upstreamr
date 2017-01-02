@@ -10,6 +10,14 @@ class Station < ActiveRecord::Base
     Bart::Station::LIST.select { |s| s[:abbr] == abbr }.first[:id]
   end
 
+  def self.transfer_abbr_to_name(abbr)
+    case abbr
+    when 'mont' then 'Montgomery St.'
+    when 'powl' then 'Powel St.'
+    when 'civc' then 'Civic Center'
+    end
+  end
+
   # currentDeparture: '17:48',
   # downstreamColor: 'yellow',
   # downstreamDestination: 'ptsb',
@@ -119,11 +127,16 @@ class Station < ActiveRecord::Base
       transfer_departure = fastest_from_upstream[:currentDeparture].to_time
       final_arrival_time = fastest_from_upstream[:finalEta].to_time
 
-      if final_arrival_time <= fastest_arrival_time + 1.minutes &&
-          transfer_departure > transfer_arrival_time
+      p fastest_arrival_time
+      p final_arrival_time
+      p transfer_departure
+      p transfer_arrival_time
 
+      if final_arrival_time <= fastest_arrival_time + 2.minutes &&
+          transfer_departure > transfer_arrival_time
+        # TODO add wait times to hash
         best_route = {
-          transfer: upstream_station,
+          transfer: Station.transfer_abbr_to_name(upstream_station),
           currentDeparture: fastest_upstream[:currentDeparture],
           upstreamColor: fastest_upstream[:downstreamColor],
           # upstreamDestination: fastest_upstream[downstreamDestination],
@@ -139,7 +152,7 @@ class Station < ActiveRecord::Base
         break
       end
     end
-
+    p best_route
     best_route || "Can not catch the same train upstream"
   end
 

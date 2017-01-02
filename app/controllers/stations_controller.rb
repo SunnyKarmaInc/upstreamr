@@ -47,8 +47,8 @@ class StationsController < ApplicationController
     @guaranteed_seat = {
       transfer: 'UN Plaza',
       currentDeparture: '17:30',
-      upsteamColor: 'RED',
-      upsteamDestination: 'mlbr',
+      upstreamColor: 'RED',
+      upstreamDestination: 'mlbr',
       transferArrival: '17:35',
       transferDeparture: '17:52',
       downstreamColor: 'YELLOW',
