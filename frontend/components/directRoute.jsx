@@ -10,6 +10,9 @@ class DirectRoute extends React.Component {
     // Parse json for display
     let parsedEta;
     let timeType;
+    let labelClass;
+    let personIcon;
+
     const route = this.props.route;
     const final = route.finalEta.split(':');
     const finalHours = parseInt(final[0]);
@@ -29,37 +32,55 @@ class DirectRoute extends React.Component {
       timeType = 'am';
     }
 
+    if (route.chanceOfSeat === 'Most likely' ||
+        route.chanceOfSeat === 'Likely') {
+      labelClass = 'likely';
+      personIcon = 'sitting-person-icon';
+
+    } else {
+      labelClass = 'unlikely';
+      personIcon = 'standing-person-icon';
+    }
+
     return (
-      <div className='results-box'>
-        <div className='start-end-labels'>
-          <p className='start'>{this.props.start}
-            <span className='wait-time'>{route.waitTime}min</span>
-          </p>
-          <p className='dest'>{this.props.dest}</p>
+      <div>
+        <div className="result-labels">
+          <span className={labelClass}>{route.chanceOfSeat} get a seat</span>
+          <span className='result-type'>{route.status}</span>
         </div>
-        <div className='direct-route-schema'>
-          <div className={`start-station-icon ${color}`}></div>
-          <div className={`long-line ${color}`}></div>
-          <div className={`arrow-dest-bottom ${color}`}></div>
-          <div className={`dest-station-icon ${color}`}></div>
-        </div>
-        <div className='time-display'>
-          <p className='time-label'>Travel downstream for</p>
-          <p>
-            <span className='time-num'>{totalTime}</span>
-            <span className='time-type'>min</span>
-          </p>
-          <div className="person-icon">
-            <div className='standing-person-icon'></div>
+        <div className='results-box'>
+          <div className='start-end-labels'>
+            <p className='start'>{this.props.start}
+              <span className='wait-time'>
+                <i className="wait-time-icon"></i>
+                <span>{route.waitTime}min</span>
+              </span>
+            </p>
+            <p className='dest'>{this.props.dest}</p>
           </div>
-          <p className='time-label'>DestinationETA</p>
-          <p>
-            <span className='time-num'>{parsedEta}</span>
-            <span className='time-type'>{timeType}</span>
-          </p>
+          <div className='direct-route-schema'>
+            <div className={`start-station-icon ${color}`}></div>
+            <div className={`long-line ${color}`}></div>
+            <div className={`arrow-dest-bottom ${color}`}></div>
+            <div className={`dest-station-icon ${color}`}></div>
+          </div>
+          <div className='time-display'>
+            <p className='time-label'>Travel downstream for</p>
+            <p>
+              <span className='time-num'>{totalTime}</span>
+              <span className='time-type'>min</span>
+            </p>
+            <div className="person-icon">
+              <div className={personIcon}></div>
+            </div>
+            <p className='time-label'>Destination ETA</p>
+            <p>
+              <span className='time-num'>{parsedEta}</span>
+              <span className='time-type'>{timeType}</span>
+            </p>
+          </div>
         </div>
       </div>
-
     );
   }
 }

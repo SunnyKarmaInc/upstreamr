@@ -8,7 +8,6 @@ class StationsController < ApplicationController
 
     @start = params[:start]
     @dest = params[:end]
-    
     # Should be something like
     # Station.find_fastest(start: @start, end: @end)
     # And it should return Hash
@@ -37,7 +36,7 @@ class StationsController < ApplicationController
     # }
     @optimal =
       if @fastest[:waitTime] < 5
-        "Can not catch next train on upstream"
+        "Can not catch the same train upstream"
       else
         Station.find_optimal(@start_abbr, @dest_abbr, @fastest)
       end

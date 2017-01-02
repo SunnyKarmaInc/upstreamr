@@ -64,6 +64,7 @@ class Station < ActiveRecord::Base
     fastest[:finalEta] = (Station.current_time + next_bart.minutes.minutes + travel_time.minutes).strftime("%H:%M")
     fastest[:chanceOfStand] = Station.chance_of_stand(start)
     fastest[:chanceOfSeat] = Station.chance_of_seat(start)
+    fastest[:status] = 'fastest downstream'
 
     fastest
   end
@@ -146,14 +147,17 @@ class Station < ActiveRecord::Base
           transfer: Station.transfer_abbr_to_name(upstream_station),
           currentDeparture: fastest_upstream[:currentDeparture],
           upstreamColor: fastest_upstream[:downstreamColor],
+          currentWaitTime: fastest_upstream[:waitTime],
           # upstreamDestination: fastest_upstream[downstreamDestination],
           transferArrival: transfer_arrival_time.strftime("%H:%M"),
           transferDeparture: transfer_departure.strftime("%H:%M"),
+          transferWaitTime: fastest_from_upstream[:waitTime],
           downstreamColor: fastest_from_upstream[:downstreamColor],
           # downstreamDestination: fastest_from_upstream[downstreamDestination],
           finalEta: final_arrival_time.strftime("%H:%M"),
           chanceOfStand: fastest_from_upstream[:chanceOfStand],
-          chanceOfSeat: fastest_from_upstream[:chanceOfSeat]
+          chanceOfSeat: fastest_from_upstream[:chanceOfSeat],
+          status: 'Catch same bart'
         }
       else
         break
@@ -186,28 +190,32 @@ class Station < ActiveRecord::Base
         ((transfer_arrival_time - Station.current_time) / 60).ceil
 
       next_barts_now = Station.next_barts(upstream_station, dest)
-      next_barts_now.map!(&:estimates).flatten
+      next_barts_now.map!(&:estimates).flatten!
+      p next_barts_now
 
       final_bart =
-        next_barts.sort_by(&:minutes).detect do |bart|
+        next_barts_now.sort_by(&:minutes).detect do |bart|
           bart.minutes > transfer_arrival_time_in_minutes
         end
 
       travel_time =
-        BartTravelTime.find(start: start, end: dest).time_in_min
+        BartTravelTime.find_by(start: upstream_station, end: dest).time_in_min
 
       return {
         transfer: Station.transfer_abbr_to_name(upstream_station),
         currentDeparture: fastest_upstream[:currentDeparture],
+        currentWaitTime: fastest_upstream[:waitTime],
         upstreamColor: fastest_upstream[:downstreamColor],
         # upstreamDestination: fastest_upstream[downstreamDestination],
         transferArrival: transfer_arrival_time.strftime("%H:%M"),
         transferDeparture: (Station.current_time + final_bart.minutes.minutes).strftime("%H:%M"),
+        transferWaitTime: final_bart.minutes,
         downstreamColor: final_bart.color,
         # downstreamDestination: fastest_from_upstream[downstreamDestination],
-        finalEta: (Station.current_time + next_bart.minutes.minutes + travel_time.minutes).strftime("%H:%M"),
+        finalEta: (Station.current_time + final_bart.minutes.minutes + travel_time.minutes).strftime("%H:%M"),
         chanceOfStand: chance_of_stand,
-        chanceOfSeat: chance_of_seat
+        chanceOfSeat: chance_of_seat,
+        status: 'Guaranteed a seat'
       }
     end
 
