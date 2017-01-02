@@ -18,6 +18,19 @@ class Station < ActiveRecord::Base
     end
   end
 
+
+  def self.next_barts(start, dest)
+    bart_station = Bart::Station.new(abbr: start)
+    bart_travel_time = BartTravelTime.where(start: start, end: dest)
+
+    final_stops = bart_travel_time.map(&:final_stop)
+
+    bart_station.departures.select do |d|
+      final_stops.include?(d.destination.abbr) &&
+        d.estimates.first.color != 'WHITE'
+    end
+  end
+
   # currentDeparture: '17:48',
   # downstreamColor: 'yellow',
   # downstreamDestination: 'ptsb',
@@ -25,17 +38,11 @@ class Station < ActiveRecord::Base
   # chanceOfStand: 'Most likely',
   # chanceOfSeat: 'Likely'
   def self.find_fastest(start, dest)
-    bart_station = Bart::Station.new(abbr: start)
     bart_travel_time = BartTravelTime.where(start: start, end: dest)
-    return "Incorrect route" if bart_travel_time.nil?
+    return "Incorrect route" if bart_travel_time.empty?
     travel_time = bart_travel_time.first.time_in_min
 
-    final_stops = bart_travel_time.map(&:final_stop)
-
-    next_barts = bart_station.departures.select do |d|
-      final_stops.include?(d.destination.abbr) &&
-        d.estimates.first.color != 'WHITE'
-    end
+    next_barts = Station.next_barts(start, dest)
 
     return "No direct Barts" if next_barts.empty?
 
@@ -157,7 +164,55 @@ class Station < ActiveRecord::Base
   end
 
   def self.find_guaranteed_seat(start, dest)
+    p 'Searching for a seat'
+    downtown_stations = ['embr', 'mont', 'powl', 'civc']
+    upstream_stations =
+      downtown_stations.select.with_index do |_, idx|
+        idx > downtown_stations.find_index(start)
+      end
 
+    upstream_stations.each do |upstream_station|
+      p upstream_station
+
+      chance_of_seat = Station.chance_of_seat(upstream_station)
+      chance_of_stand = Station.chance_of_stand(upstream_station)
+
+      next if chance_of_seat == 'Most unlikely' ||
+              chance_of_seat == 'Unlikely'
+
+      fastest_upstream = Station.find_fastest(start, upstream_station)
+      transfer_arrival_time = fastest_upstream[:finalEta].to_time
+      transfer_arrival_time_in_minutes =
+        ((transfer_arrival_time - Station.current_time) / 60).ceil
+
+      next_barts_now = Station.next_barts(upstream_station, dest)
+      next_barts_now.map!(&:estimates).flatten
+
+      final_bart =
+        next_barts.sort_by(&:minutes).detect do |bart|
+          bart.minutes > transfer_arrival_time_in_minutes
+        end
+
+      travel_time =
+        BartTravelTime.find(start: start, end: dest).time_in_min
+
+      return {
+        transfer: Station.transfer_abbr_to_name(upstream_station),
+        currentDeparture: fastest_upstream[:currentDeparture],
+        upstreamColor: fastest_upstream[:downstreamColor],
+        # upstreamDestination: fastest_upstream[downstreamDestination],
+        transferArrival: transfer_arrival_time.strftime("%H:%M"),
+        transferDeparture: (Station.current_time + final_bart.minutes.minutes).strftime("%H:%M"),
+        downstreamColor: final_bart.color,
+        # downstreamDestination: fastest_from_upstream[downstreamDestination],
+        finalEta: (Station.current_time + next_bart.minutes.minutes + travel_time.minutes).strftime("%H:%M"),
+        chanceOfStand: chance_of_stand,
+        chanceOfSeat: chance_of_seat
+      }
+    end
+
+    # Should not be hittable
+    "Can not find seat"
   end
 
   # def fastest_travel_time_to(destination)
