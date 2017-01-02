@@ -4,7 +4,8 @@
   "description": "There should be brief project description. (2-3 sentences)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "./node_modules/.bin/webpack"
   },
   "repository": {
     "type": "git",
@@ -29,5 +30,8 @@
     "redux": "^3.6.0",
     "webpack": "^1.14.0"
   },
-  "devDependencies": {}
+  "engines": {
+    "node": "6.2.1",
+    "npm": "3.9.3"
+  }
 }

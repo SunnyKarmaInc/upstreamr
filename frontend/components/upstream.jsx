@@ -13,7 +13,7 @@ class Upstream extends React.Component {
     } else if (route === 'Optimal is guaranteed seat') {
       return <div className="no-result">{route}</div>;
     }
-    console.log(route);
+    // console.log(route);
     let parsedEta;
     let timeType;
     let personIcon;
