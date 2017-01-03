@@ -38,7 +38,7 @@ class Upstream extends React.Component {
       timeType = 'am';
     }
 
-    if (route.chanceOfSeat === 'Most Likely' ||
+    if (route.chanceOfSeat === 'Most likely' ||
         route.chanceOfSeat === 'Likely') {
       labelClass = 'likely';
       personIcon = 'sitting-person-icon';

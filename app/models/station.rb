@@ -101,7 +101,7 @@ class Station < ActiveRecord::Base
       when 'embr' then 'Most unlikely'
       when 'mont' then 'Unlikely'
       when 'powl' then 'Likely'
-      when 'civc' then 'Most Likely'
+      when 'civc' then 'Most likely'
       end
     elsif Station.current_time.hour == 15 || Station.current_time.hour == 19
       case station
