@@ -35,7 +35,7 @@ class Station < ActiveRecord::Base
   # downstreamColor: 'yellow',
   # downstreamDestination: 'ptsb',
   # downstreamArrival: '18:15',
-  # chanceOfStand: 'Most likely',
+  # chanceOfStand: 'Very likely',
   # chanceOfSeat: 'Likely'
   def self.find_fastest(start, dest)
     bart_travel_time = BartTravelTime.where(start: start, end: dest)
@@ -80,17 +80,17 @@ class Station < ActiveRecord::Base
       when 'embr' then 'Unlikely'
       when 'mont' then 'Unlikely'
       when 'powl' then 'Likely'
-      when 'civc' then 'Most likely'
+      when 'civc' then 'Very likely'
       end
     elsif Station.current_time.hour == 15 || Station.current_time.hour == 19
       case station
       when 'embr' then 'Likely'
       when 'mont' then 'Likely'
-      when 'powl' then 'Most likely'
-      when 'civc' then 'Most likely'
+      when 'powl' then 'Very likely'
+      when 'civc' then 'Very likely'
       end
     else
-      'Most likely'
+      'Very likely'
     end
 
   end
@@ -98,20 +98,20 @@ class Station < ActiveRecord::Base
   def self.chance_of_seat(station)
     if Station.current_time.hour > 15 && Station.current_time.hour < 19
       case station
-      when 'embr' then 'Most unlikely'
+      when 'embr' then 'Very unlikely'
       when 'mont' then 'Unlikely'
       when 'powl' then 'Likely'
-      when 'civc' then 'Most Likely'
+      when 'civc' then 'Very likely'
       end
     elsif Station.current_time.hour == 15 || Station.current_time.hour == 19
       case station
       when 'embr' then 'Unlikely'
       when 'mont' then 'Likely'
       when 'powl' then 'Likely'
-      when 'civc' then 'Most likely'
+      when 'civc' then 'Very likely'
       end
     else
-      'Most likely'
+      'Very likely'
     end
   end
 
@@ -182,7 +182,7 @@ class Station < ActiveRecord::Base
       chance_of_seat = Station.chance_of_seat(upstream_station)
       chance_of_stand = Station.chance_of_stand(upstream_station)
 
-      next if chance_of_seat == 'Most unlikely' ||
+      next if chance_of_seat == 'Very unlikely' ||
               chance_of_seat == 'Unlikely'
 
       fastest_upstream = Station.find_fastest(start, upstream_station)

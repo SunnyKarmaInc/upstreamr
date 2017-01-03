@@ -36,7 +36,7 @@ class Upstream extends React.Component {
       timeType = 'am';
     }
 
-    if (route.chanceOfSeat === 'Most likely' ||
+    if (route.chanceOfSeat === 'Very likely' ||
         route.chanceOfSeat === 'Likely') {
       labelClass = 'likely';
       personIcon = 'sitting-person-icon';
@@ -48,7 +48,7 @@ class Upstream extends React.Component {
     return (
       <div>
         <div className="result-labels">
-          <span className={labelClass}>{route.chanceOfSeat} get a seat</span>
+          <span className={labelClass}>{route.chanceOfSeat} to get a seat</span>
           <span className='result-type'>{route.status}</span>
         </div>
         <div className='results-box'>
