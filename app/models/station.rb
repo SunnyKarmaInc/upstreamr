@@ -193,13 +193,14 @@ class Station < ActiveRecord::Base
       next_barts_now = Station.next_barts(upstream_station, dest)
       next_barts_now.map!(&:estimates).flatten!
       p next_barts_now
-
       final_bart =
         next_barts_now.sort_by(&:minutes).detect do |bart|
           bart.minutes > transfer_arrival_time_in_minutes
         end
 
       p final_bart
+
+      return "Can not find seat" if final_bart.nil?
 
       travel_time =
         BartTravelTime.find_by(start: upstream_station, end: dest).time_in_min
