@@ -189,6 +189,8 @@ class Station < ActiveRecord::Base
       transfer_arrival_time = fastest_upstream[:finalEta].to_time
       transfer_arrival_time_in_minutes =
         ((transfer_arrival_time - Station.current_time) / 60).ceil
+      p transfer_arrival_time
+      p transfer_arrival_time_in_minutes
 
       next_barts_now = Station.next_barts(upstream_station, dest)
       next_barts_now.map!(&:estimates).flatten!
