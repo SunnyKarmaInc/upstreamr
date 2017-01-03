@@ -67,7 +67,10 @@ class StationsController < ApplicationController
       else
         "Optimal is guaranteed seat"
       end
-
+    p "results"
+    p @fastest
+    p @optimal
+    p @guaranteed_seat
     render :directions
   end
 
