@@ -12,6 +12,8 @@ class Upstream extends React.Component {
       return <div className="no-result">{route}</div>;
     } else if (route === 'Optimal is guaranteed seat') {
       return <div className="no-result">{route}</div>;
+    } else if (route === 'Can not find seat') {
+      return <div className="no-result">{route}</div>;
     }
     // console.log(route);
     let parsedEta;
