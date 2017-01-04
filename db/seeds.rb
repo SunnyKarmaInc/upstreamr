@@ -233,3 +233,9 @@ BartTravelTime.create(start: 'mont', end: 'powl', time_in_min: 2, final_stop: 'm
 BartTravelTime.create(start: 'mont', end: 'civc', time_in_min: 3, final_stop: 'mlbr')
 BartTravelTime.create(start: 'mont', end: 'civc', time_in_min: 3, final_stop: '24th')
 BartTravelTime.create(start: 'mont', end: 'civc', time_in_min: 3, final_stop: 'mlbr')
+
+
+BartTravelTime.create(start: 'powl', end: 'civc', time_in_min: 1, final_stop: 'mlbr')
+BartTravelTime.create(start: 'powl', end: 'civc', time_in_min: 1, final_stop: 'sfia')
+BartTravelTime.create(start: 'powl', end: 'civc', time_in_min: 1, final_stop: '24th')
+BartTravelTime.create(start: 'powl', end: 'civc', time_in_min: 1, final_stop: 'daly')
