@@ -8,11 +8,9 @@ class Upstream extends React.Component {
   render() {
     const route = this.props.route;
 
-    if (route === "Can not catch the same train upstream") {
+    if (route === "Cannot catch the same train upstream") {
       return <div className="no-result">{route}</div>;
     } else if (route === 'Optimal is guaranteed seat') {
-      return <div className="no-result">{route}</div>;
-    } else if (route === 'Can not find seat') {
       return <div className="no-result">{route}</div>;
     }
     // console.log(route);

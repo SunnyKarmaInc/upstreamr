@@ -159,14 +159,14 @@ class Station < ActiveRecord::Base
           finalEta: final_arrival_time.strftime("%H:%M"),
           chanceOfStand: fastest_from_upstream[:chanceOfStand],
           chanceOfSeat: fastest_from_upstream[:chanceOfSeat],
-          status: 'Catch same bart'
+          status: 'catch the same train'
         }
       else
         break
       end
     end
     p best_route
-    best_route || "Can not catch the same train upstream"
+    best_route || "Cannot catch the same train upstream"
   end
 
   def self.find_guaranteed_seat(start, dest)
@@ -183,8 +183,7 @@ class Station < ActiveRecord::Base
       chance_of_seat = Station.chance_of_seat(upstream_station)
       chance_of_stand = Station.chance_of_stand(upstream_station)
 
-      next if chance_of_seat == 'Very unlikely' ||
-              chance_of_seat == 'Unlikely'
+      next unless chance_of_seat == "Very likely"
 
       fastest_upstream = Station.find_fastest(start, upstream_station)
       transfer_arrival_time = fastest_upstream[:finalEta].to_time
@@ -222,12 +221,12 @@ class Station < ActiveRecord::Base
         finalEta: (Station.current_time + final_bart.minutes.minutes + travel_time.minutes).strftime("%H:%M"),
         chanceOfStand: chance_of_stand,
         chanceOfSeat: chance_of_seat,
-        status: 'Guaranteed a seat'
+        status: 'guaranteed a seat'
       }
     end
 
     # Should not be hittable
-    "Can not find seat"
+    "Cannot find seat"
   end
 
   # def fastest_travel_time_to(destination)
