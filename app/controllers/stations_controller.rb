@@ -31,7 +31,7 @@ class StationsController < ApplicationController
     #   downstreamColor: 'YELLOW',
     #   downstreamDestination: 'ptsb',
     #   finalEta: '18:15',
-    #   chanceOfStand: 'Most likely',
+    #   chanceOfStand: 'Very likely',
     #   chanceOfSeat: 'Likely'
     # }
     @optimal =
@@ -55,13 +55,13 @@ class StationsController < ApplicationController
     #   downstreamColor: 'YELLOW',
     #   downstreamDestination: 'ptsb',
     #   finalEta: '18:25',
-    #   chanceOfStand: 'Most likely',
+    #   chanceOfStand: 'Very likely',
     #   chanceOfSeat: 'Likely'
     # }
     @guaranteed_seat =
       if @optimal.is_a?(String) ||
            @optimal[:chanceOfSeat] == 'Unlikely' ||
-           @optimal[:chanceOfSeat] == 'Most unlikely'
+           @optimal[:chanceOfSeat] == 'Very unlikely'
 
         Station.find_guaranteed_seat(@start_abbr, @dest_abbr)
       else

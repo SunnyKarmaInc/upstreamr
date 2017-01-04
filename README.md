@@ -83,10 +83,10 @@ All your work commits should be under **develop** branch. (exceptions for hot-fi
 
 #### JSON Response ####
 
-* Most unlikely
+* Very unlikely
 * Unlikely
 * Likely
-* Most likely
+* Very likely
 
 JSON Hash:
 ```
@@ -105,7 +105,7 @@ JSON Hash:
       downstreamDestination: 'ptsb',
       transferArrival: '',
       transferDeparture: '',
-      chanceOfStand: 'Most likely',
+      chanceOfStand: 'Very likely',
       chanceOfSeat: 'Likely'
     },
 
@@ -121,7 +121,7 @@ JSON Hash:
       transferWaitTime: 5,
       downstreamColor: 'yellow',
       downstreamDestination: 'ptsb',
-      chanceOfStand: 'Most likely',
+      chanceOfStand: 'Very likely',
       chanceOfSeat: 'Likely'
     },
 
@@ -137,7 +137,7 @@ JSON Hash:
       transferWaitTime: 5,
       downstreamColor: 'yellow',
       downstreamDestination: 'ptsb',
-      chanceOfStand: 'Most likely',
+      chanceOfStand: 'Very likely',
       chanceOfSeat: 'Likely'
     }
   }
