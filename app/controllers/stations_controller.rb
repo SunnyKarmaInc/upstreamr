@@ -36,7 +36,7 @@ class StationsController < ApplicationController
     # }
     @optimal =
       if @fastest[:waitTime] < 5
-        "Can not catch the same train upstream"
+        "Cannot catch the same train upstream"
       else
         Station.find_optimal(@start_abbr, @dest_abbr, @fastest)
       end
@@ -60,8 +60,7 @@ class StationsController < ApplicationController
     # }
     @guaranteed_seat =
       if @optimal.is_a?(String) ||
-           @optimal[:chanceOfSeat] == 'Unlikely' ||
-           @optimal[:chanceOfSeat] == 'Very unlikely'
+           @optimal[:chanceOfSeat] != 'Very likely' 
 
         Station.find_guaranteed_seat(@start_abbr, @dest_abbr)
       else
