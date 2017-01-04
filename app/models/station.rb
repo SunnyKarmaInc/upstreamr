@@ -102,6 +102,7 @@ class Station < ActiveRecord::Base
       when 'mont' then 'Unlikely'
       when 'powl' then 'Likely'
       when 'civc' then 'Very likely'
+
       end
     elsif Station.current_time.hour == 15 || Station.current_time.hour == 19
       case station
@@ -188,17 +189,20 @@ class Station < ActiveRecord::Base
       transfer_arrival_time = fastest_upstream[:finalEta].to_time
       transfer_arrival_time_in_minutes =
         ((transfer_arrival_time - Station.current_time) / 60).ceil
+      p transfer_arrival_time
+      p transfer_arrival_time_in_minutes
 
       next_barts_now = Station.next_barts(upstream_station, dest)
       next_barts_now.map!(&:estimates).flatten!
       p next_barts_now
-
       final_bart =
         next_barts_now.sort_by(&:minutes).detect do |bart|
           bart.minutes > transfer_arrival_time_in_minutes
         end
 
       p final_bart
+
+      return "Can not find seat" if final_bart.nil?
 
       travel_time =
         BartTravelTime.find_by(start: upstream_station, end: dest).time_in_min

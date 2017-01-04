@@ -11,7 +11,7 @@ class Upstream extends React.Component {
     if (route === "Cannot catch the same train upstream") {
       return <div className="no-result">{route}</div>;
     } else if (route === 'Optimal is guaranteed seat') {
-      return <div className="no-result">Finding a seat adds no time to your journey!</div>;
+      return <div className="no-result">{route}</div>;
     }
     // console.log(route);
     let parsedEta;

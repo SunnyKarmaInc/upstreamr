@@ -1,12 +1,19 @@
 # Upstreamr
 
-There should be brief project description. (2-3 sentences)
+Commuting on BART during pick hours? Never get a seat and waste your time?
+
+Try Upstream! It will help you get a seat on your bart by going upstream.
+
+Get [Upstreamr]. Get a seat. Be 5% more productive!
+
+p.s. 30 minutes commute a day => 2.5h a week => 130h a year!
+
+![upstreamr-gif](app/assets/images/upstreamr.gif)
 
 ### Useful links
 
 * [Trello board]
-* [BART API] - ?
-* [MarkDown preview online]
+* [BART API]
 
 ### Hackaton group:
 
@@ -54,6 +61,8 @@ All your work commits should be under **develop** branch. (exceptions for hot-fi
 [Dan]: <https://github.com/dankim93>
 [Maria]: <https://github.com/mbelgrader>
 [MarkDown preview online]: <http://markdownlivepreview.com/>
+[BART API]: <http://api.bart.gov/docs/etd/etd.aspx>
+[Upstreamr]: <https://upstreamr.herokuapp.com/>
 
 
 ### Detailed Project description ###
@@ -72,7 +81,7 @@ All your work commits should be under **develop** branch. (exceptions for hot-fi
 
 > Front-End <> Back-End
 
-#### JSON Hash ####
+#### JSON Response ####
 
 * Very unlikely
 * Unlikely
@@ -89,6 +98,7 @@ JSON Hash:
       transfer: '',
       currentDeparture: '17:48',
       finalEta: 18:01,
+      waitTime: 4,
       upsteamColor: '',
       upsteamDestination: '',
       downstreamColor: 'yellow',
@@ -102,11 +112,13 @@ JSON Hash:
     optimal: {
       transfer: 'civic',
       currentDeparture: '17:26',
+      currentWaitTime: 4,
       finalEta: 18:05,
       upsteamColor: 'red',
       upsteamDestination: 'mlbr',
       transferArrival: '17:30',
       transferDeparture: '17:42',
+      transferWaitTime: 5,
       downstreamColor: 'yellow',
       downstreamDestination: 'ptsb',
       chanceOfStand: 'Very likely',
@@ -116,11 +128,13 @@ JSON Hash:
     guaranteedSeat: {
       transfer: 'UN Plaza',
       currentDeparture: '17:30',
+      currentWaitTime: 4,
       finalEta: 18:11,
       upsteamColor: 'red',
       upsteamDestination: 'mlbr',
       transferArrival: '17:35',
       transferDeparture: '17:52',
+      transferWaitTime: 5,
       downstreamColor: 'yellow',
       downstreamDestination: 'ptsb',
       chanceOfStand: 'Very likely',
@@ -129,10 +143,6 @@ JSON Hash:
   }
 }
 ```
-
-#### UML Diagram ####
-
-> UML Diagram
 
 #### React Components ####
 
