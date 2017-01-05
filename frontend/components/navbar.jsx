@@ -2,15 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class Navbar extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    console.log(props);
   }
 
   render() {
     return (
       <nav>
         <div className="area">BART</div>
-        <div className="logo"></div>
+        <div className="logo" onClick={this.props.backToInput}></div>
         <div className="settings-icon-back"></div>
       </nav>
     );
