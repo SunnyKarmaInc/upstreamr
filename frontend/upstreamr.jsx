@@ -16,17 +16,21 @@ class Upstreamr extends React.Component {
     this.setState({ input: true, results });
   }
 
+  backToInput () {
+    this.setState({ input: false });
+  }
+
   render() {
     if (this.state.input === false) {
       return (
         <div>
-          <Navbar />
+          <Navbar backToInput={this.backToInput.bind(this)}/>
           <ChooseDirectionsForm displayResults={this.displayResults.bind(this)}/>
         </div>);
     } else {
       return (
         <div>
-          <Navbar />
+          <Navbar backToInput={this.backToInput.bind(this)} />
           <Results results={this.state.results}/>
         </div>);
     }
