@@ -1,12 +1,11 @@
 # Upstreamr
 
-Commuting on BART during pick hours? Never get a seat and waste your time?
+Commuting on BART during peak hours? Tired of never getting a seat and losing what could otherwise be productive time?
 
-Try Upstream! It will help you get a seat on your bart by going upstream.
+Try Upstreamr! It can help you find a seat by traveling 'upstream' to Civic Center or 16th street, stepping across the platform and getting a seat before the huddled masses crowd aboard- all without adding time to your commute!
 
-Get [Upstreamr]. Get a seat. Be 5% more productive!
+Get [Upstreamr]. Get a seat, and be more productive! An hour per day standing on your commute home adds up to 260 hours (or 1.5 months of full-time work!) of discomfort to your life per year. Imagine if you could spend that time comfortably seated instead.
 
-p.s. 30 minutes commute a day => 2.5h a week => 130h a year!
 
 ![upstreamr-gif](app/assets/images/upstreamr.gif)
 
@@ -15,7 +14,7 @@ p.s. 30 minutes commute a day => 2.5h a week => 130h a year!
 * [Trello board]
 * [BART API]
 
-### Hackaton group:
+### Hackathon group:
 
 * [Igor]
 * [Dallas]
